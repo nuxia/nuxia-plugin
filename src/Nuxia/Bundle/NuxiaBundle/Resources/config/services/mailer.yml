@@ -1,6 +1,6 @@
 services:
     nuxia.mailer:
-        class: "Nuxia\Component\Mailer\Mailer"
+        class: Nuxia\Component\Mailer\Mailer
         lazy: true
         arguments:
             - "@mailer"

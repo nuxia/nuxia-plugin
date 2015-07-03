@@ -1,6 +1,6 @@
 services:
     nuxia.validator.reserved_words:
-        class: "Nuxia\Component\Validator\Constraints\ReservedWordsValidator"
+        class: Nuxia\Component\Validator\Constraints\ReservedWordsValidator
         arguments:
             - "%validator.reserved_words%"
         tags:

@@ -1,7 +1,7 @@
 services:
     nuxia.paginator.default:
         parent: "knp_paginator"
-        class: "Nuxia\Component\Pager\BasePaginator"
+        class: Nuxia\Component\Pager\BasePaginator
         abstract: true
         calls:
             - [ "setRequestStack", [ "@request_stack" ] ]
