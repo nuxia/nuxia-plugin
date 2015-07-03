@@ -3,6 +3,35 @@
 #### Bundle
 
 - Il faut supprimer le scope `request` dans tous les fichiers services `.yml`.
+
+### FrontendBundle
+	
+The bundle has been removed.
+
+- The `flashbag.html.twig` file path has changed. You must edit your twig layout.
+
+ Before:
+``` twig
+   {% include '@NuxiaFrontend//flashbag.html.twig' %}
+```
+   
+ After:   
+``` twig
+   {% include '@Nuxia/flashbag.html.twig' %}   
+```
+
+- The `select2-translation.js` file path has changed. You must edit your config.yml.
+
+ Before:
+``` yml
+- "@NuxiaFrontendBundle/Resources/public/select2/js/select2-translations.js"
+```
+   
+ After:   
+``` twig
+- "js/select2-translations.js"
+```
+
 #### Controller
 
 - The `redirectToUrl` and `redirectFromUrl` methods has been deleted in favor of `redirect`

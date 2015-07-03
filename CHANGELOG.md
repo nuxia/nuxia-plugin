@@ -23,6 +23,7 @@ CHANGELOG
 - Ajout d'un html extension
 - Ajout de traductions globales
 - Ajout d'un template pour afficher les `flashbags` (voir `UPGRADE.md`).
+- Suppression des spaceless inutiles pour les performances.
 
 Controller : 
 
