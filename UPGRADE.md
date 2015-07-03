@@ -8,6 +8,35 @@
 	
 The bundle has been removed.
 
+- You must use `bower` to download the css and js packages needed : 
+
+ - select2
+ - bootstrap3
+ - charcounter
+ - bootstrap-datepicker
+
+- You must delete the following line from you AppKernel.php : 
+
+ ```
+  new Nuxia\Bundle\FrontendBundle\NuxiaFrontendBundle()
+ ```
+
+- You must delete the 3 following lines from your composer.json under the autoload section :
+```
+ "Nuxia\\Bundle\\FrontendBundle\\": "vendor/nuxia/nx-frontend-bundle/Nuxia/Bundle/FrontendBundle"
+ ```
+ ```
+ "Nuxia\\Bundle\\": "vendor/nuxia/nuxia/src/Nuxia/Bundle"
+ ```
+ ```
+ "Nuxia\\Component\\": "vendor/nuxia/nuxia/src/Nuxia/Component"
+ ```
+
+- You must add the following line on your composer.json under the require section :
+  ``` 
+  "nuxia/nuxia-plugin": "2.7.x-dev" 
+  ```
+
 - The `flashbag.html.twig` file path has changed. You must edit your twig layout.
 
  Before:
@@ -30,6 +59,7 @@ The bundle has been removed.
  After:   
 ``` twig
 - "js/select2-translations.js"
+
 ```
 
 #### Controller

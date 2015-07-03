@@ -23,6 +23,8 @@ CHANGELOG
 - Ajout d'un html extension
 - Ajout de traductions globales
 - Ajout d'un template pour afficher les `flashbags` (voir `UPGRADE.md`).
+- Passage du plugin sur github (voir `UPGRADE.md`).
+- Suppression du bundle `NuxiaFrontendBundle` (voir `UPGRADE.md`).
 - Suppression des spaceless inutiles pour les performances.
 
 Controller : 
