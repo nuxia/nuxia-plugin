@@ -1,0 +1,25 @@
+parameters:
+    nuxia.login.form.type: "nuxia_login"
+    
+services:
+    nuxia.login.form.type:
+        class: "Nuxia\Component\Form\Type\LoginType"
+        tags:
+            - { name: "form.type", alias: "%nuxia.login.form.type%"}
+    
+    nuxia.login.form.factory:
+        class: "Nuxia\Component\Form\Factory\FormFactory"
+        public: false
+        arguments:
+            - "@form.factory"
+            - "%mold_content.focus.form.type%"
+
+    nuxia.login.form.handler:
+        parent: "nuxia.form.handler.abstract"
+        class: "Nuxia\Component\Form\Handler\LoginFomrHandler"
+        public: false
+        arguments:
+            - "@session"
+            - "@security.firewall.map"
+        calls:
+            - [ "setFormFactory", [ "@nuxia.login.form.factory" ] ]

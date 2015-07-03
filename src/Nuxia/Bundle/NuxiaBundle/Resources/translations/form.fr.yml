@@ -1,0 +1,23 @@
+form:
+    submit:
+        label: "Enregistrer"
+    filter:
+        submit:
+            label: "Rechercher"
+        reset:
+            label: "Tout afficher"
+    required_fields.help: "* Champs obligatoires"
+
+captcha:
+    label: "Captcha"
+
+date:
+    range:
+        start:
+            label: "Date de début"
+        end:
+            label: "Date de fin"
+
+choice:
+    filter:
+        placeholder: "Tous"

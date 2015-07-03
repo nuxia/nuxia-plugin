@@ -1,0 +1,134 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block form_help %}
+    {% if help is defined %}
+        <em class="help">{{ help|trans({}, 'form') }}</em>
+    {% endif %}
+{% endblock %}
+
+{# Bloc surchargé pour ajouter l'aide #}
+{% block form_widget_compound %}
+    <div {{ block('widget_container_attributes') }}>
+        {% if form.parent is empty %}
+            {{ form_errors(form) }}
+        {% endif %}
+        {{ block('form_rows') }}
+        {{ form_rest(form) }}
+        {{ form_help(form) }}
+    </div>
+{% endblock form_widget_compound %}
+
+{# Bloc surchargé pour ne pas "render "les champs de type action (button) #}
+{% block form_rows %}
+    {% for child in form if child.vars.render_as_action is not defined %}
+        {{ form_row(child) }}
+    {% endfor %}
+{% endblock form_rows %}
+
+{# Bloc surchargé pour ne pas "render" les champs de type action (button) #}
+{% block form_rest %}
+    {% for child in form %}
+        {% if not child.rendered and child.vars.render_as_action is not defined %}
+            {{ form_row(child) }}
+        {% endif %}
+    {% endfor %}
+{% endblock form_rest %}
+
+{# Bloc surchargé pour ajouter l'aide #}
+{% block form_row %}
+    <div>
+        {{ form_label(form) }}
+        {{ form_widget(form) }}
+        {{ form_errors(form) }}
+        {{ form_help(form) }}
+    </div>
+{% endblock form_row %}
+
+{# Bloc surchargé pour ne pas "humanize" et pour les * quand le champ est obligatoire #}
+{% block form_label %}
+    {%- if label is not empty -%}
+        {#@NUXIA utilisé le parent quand frontend end bundle sera taggé #}
+        {#{{ parent() }}#}
+        {% if not compound %}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {% endif %}
+        {% if required %}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {% endif %}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}{% if required %}{{ required_render|default(' *')|raw }}{% endif %}</label>
+    {%- endif -%}
+{% endblock form_label %}
+
+{# Bloc surchargé pour ajouter <em class="error"> #}
+{% block form_errors %}
+    {% if errors|length > 0 %}
+        {% for error in errors %}
+            <em class="error">{{ block('form_error') }}</em>
+        {% endfor %}
+    {% endif %}
+{% endblock form_errors %}
+
+{# Bloc surchargé pour les erreurs non traduites lors de l'appel de $form->addError (dans les events par exemple) #}
+{% block form_error %}
+    {%- if error.message -%}
+        {{ error.message }}
+    {%- else -%}
+        {{ error.messageTemplate|trans(error.messageParameters, 'validators') }}
+    {%- endif -%}
+{% endblock form_error %}
+
+{# Bloc surchargé pour enlever <div></div> autour du bouton #}
+{% block button_row %}
+    {{ form_widget(form) }}
+{% endblock button_row %}
+
+{# Bloc surchargé ne pas avoir les étoiles de required dans les checkbox et radiobox  #}
+{% block checkbox_label %}
+    {% set required = false %}
+    {{ block('form_label') }}
+{% endblock checkbox_label %}
+
+{# Blocs des type de nuxia #}
+{% block nuxia_captcha_widget %}
+    <div class="captcha widget">
+        <img src="{{ image }}"/>
+        {{ form_widget(form) }}
+    </div>
+{% endblock %}
+
+{% block nuxia_media_data_widget %}
+    {{ render_data(form.vars.data) }}
+{% endblock %}
+
+{% block nuxia_reset_widget %}
+    <a href="{{ url }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain) }}</a>
+{% endblock %}
+
+{% block form_actions %}
+    {% for child in form %}
+        {% if not child.rendered and child.vars.render_as_action is defined %}
+            {{ form_row(child) }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{# @SYMFONY 2.8 : A supprimer (ajouter pour la trad du placeholder) #}
+{%- block choice_widget_collapsed -%}
+    {%- if required and placeholder is none and not placeholder_in_choices and not multiple -%}
+        {% set required = false %}
+    {%- endif -%}
+    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+        {%- if placeholder is not none -%}
+            <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ placeholder is empty ? '' : placeholder|trans({}, translation_domain) }}</option>
+        {%- endif -%}
+        {%- if preferred_choices|length > 0 -%}
+            {% set options = preferred_choices %}
+            {{- block('choice_widget_options') -}}
+            {%- if choices|length > 0 and separator is not none -%}
+                <option disabled="disabled">{{ separator }}</option>
+            {%- endif -%}
+        {%- endif -%}
+        {%- set options = choices -%}
+        {{- block('choice_widget_options') -}}
+    </select>
+{%- endblock choice_widget_collapsed -%}

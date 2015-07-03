@@ -1,0 +1,3 @@
+dynamic_media:
+    path: "/media"
+    defaults: { _controller: "nuxia_dynamic_media.default.controller:listAction" }

@@ -1,0 +1,10 @@
+caption: "Media library"
+item:
+    fullpage: "Fullpage"
+    link: "Link"
+    copy: "Select link"
+search:
+    label: "Search"
+    submit: "Search"
+    reset: "Reset"
+  

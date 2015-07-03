@@ -1,0 +1,11 @@
+services:
+    nuxia.mailer:
+        class: "Nuxia\Component\Mailer\Mailer"
+        lazy: true
+        arguments:
+            - "@mailer"
+            - "@twig"
+            - { from: "%mailer.from%", template: "@@Nuxia/Mailer/default" }
+        calls:
+            - [ "setRouter", [ "@router" ] ]
+            - [ "setDefaultLanguage", [ "%locale%" ] ]

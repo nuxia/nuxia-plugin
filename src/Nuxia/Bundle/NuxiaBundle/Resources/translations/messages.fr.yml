@@ -1,0 +1,5 @@
+datetime:
+    format:
+        hours_and_minutes: "%hours%h %minutes%m"
+        minutes: "%minutes%m"
+        day:

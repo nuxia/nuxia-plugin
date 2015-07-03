@@ -1,0 +1,55 @@
+{% if pageCount > 1 %}
+    <div class="nx-dynmedia-pagination">
+        <ul>
+            <li>
+                {%- if first is defined and current != first -%}
+                    <a title="{{ 'paginator.first'|trans({}, 'messages') }}"
+                       href="{{ path(route, query|merge({(pageParameterName): first})) }}"
+                       class="nx-dynmedia-first"></a>
+                {%- else -%}
+                    <span class="nx-dynmedia-disabled nx-dynmedia-first"></span>
+                {%- endif -%}
+            </li>
+
+            <li>
+                {%- if previous is defined -%}
+                    <a title="{{ 'paginator.previous'|trans({}, 'messages') }}"
+                       href="{{ path(route, query|merge({(pageParameterName): previous})) }}"
+                       class="nx-dynmedia-previous"></a>
+                {%- else -%}
+                    <span class="nx-dynmedia-disabled nx-dynmedia-previous"></span>
+                {%- endif -%}
+            </li>
+
+            {% for page in pagesInRange %}
+                <li>
+                    {% if page != current %}
+                        <a title="{{ 'paginator.page'|trans({'%page%': page}, 'messages') }}"
+                           href="{{ path(route, query|merge({(pageParameterName): page })) }}"
+                           class="nx-dynmedia-page">{{ page }}</a>
+                    {% else %}
+                        <span class="nx-dynmedia-disabled nx-dynmedia-page">{{ page }}</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+
+            <li>
+                {%- if next is defined -%}
+                    <a title="{{ 'paginator.next'|trans({}, 'messages') }}"
+                       href="{{ path(route, query|merge({(pageParameterName): next})) }}" class="nx-dynmedia-next"></a>
+                {%- else -%}
+                    <span class="nx-dynmedia-disabled nx-dynmedia-next"></span>
+                {%- endif -%}
+            </li>
+
+            <li>
+                {%- if last is defined and current != last -%}
+                    <a title="{{ 'paginator.last'|trans({}, 'messages') }}"
+                       href="{{ path(route, query|merge({(pageParameterName): last})) }}" class="nx-dynmedia-last"></a>
+                {%- else -%}
+                    <span class="nx-dynmedia-disabled nx-dynmedia-last"></span>
+                {%- endif -%}
+            </li>
+        </ul>
+    </div>
+{% endif %}    

@@ -1,0 +1,9 @@
+caption: "Banque de données"
+item:
+    fullpage: "Afficher en pleine page"
+    link: "Lien du fichier"
+    copy: "Sélectionner le lien"
+search:
+    label: "Recherche"
+    submit: "Rechercher"
+    reset: "Tout afficher"

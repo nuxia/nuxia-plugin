@@ -1,0 +1,7 @@
+services:
+    nuxia.validator.reserved_words:
+        class: "Nuxia\Component\Validator\Constraints\ReservedWordsValidator"
+        arguments:
+            - "%validator.reserved_words%"
+        tags:
+            - { name: validator.constraint_validator, alias: "nuxia.validator.reserved_words" }

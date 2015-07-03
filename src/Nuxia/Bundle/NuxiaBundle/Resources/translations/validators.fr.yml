@@ -1,0 +1,34 @@
+slug:
+    invalid: "Le nom technique saisi est invalide (il ne doit contenir ni accent, ni espace, ni majuscule, ni caractère spécial)."
+reserved_words:
+    invalid:  "Le mot \"%word%\" est reservé par l'application."
+captcha:
+    invalid: "la valeur saisie n'est pas correcte."
+choice:
+    invalid: "La sélection est invalide."
+field:
+    required: "Ce champ est obligatoire."
+    date:
+        invalid: "Le format est incorrect. Il doit-être jj/mm/aaaa."
+    time:
+        invalid: "Le format est incorrect. Il doit-être hh:mm."
+    datetime:
+        invalid: "Le format est incorrect. Il doit-être jj/mm/aaaa hh:mm."
+        range:
+            after: "La date doit être postérieure au %after%."
+            greater: "La date doit être postérieure ou égale au %value%."
+            greater_or_equal: "La date doit être postérieure ou égale au %value%."
+            before: "La date de début doit être antérieure au %before%."
+            less: "La date de début doit être antérieure au %value%."
+            less_or_equal: "La date de début doit être antérieure ou égale au %value%."
+            future: "La date doit-être future"
+            past: "La date doit-être passée"
+    integer:
+        invalid: "La saisie doit être un nombre entier"
+    number:
+        invalid: "Le nombre saisi est invalide"
+    email:
+        invalid: "L'adresse e-mail saisie est invalide."
+    length:
+        max: "Ce champ ne doit pas excéder {{ limit }} caractère.|Ce champ ne doit pas excéder {{ limit }} caractères."
+        min: "Ce champ doit comporter au minimum {{ limit }} caractère.|Ce champ doit comporter au minimum {{ limit }} caractères."

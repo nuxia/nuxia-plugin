@@ -1,0 +1,5 @@
+{% extends '@Nuxia/Mailer/base.html.twig' %}
+
+{% block body %}
+    {{ message|default('You must custom message parameter using addTemplateParameters method') }}
+{% endblock %}

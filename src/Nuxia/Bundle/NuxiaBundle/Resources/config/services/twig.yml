@@ -1,0 +1,32 @@
+services:
+    twig.extension.text:
+        class: "Twig_Extensions_Extension_Text"
+        public: false
+        tags:
+            - { name: "twig.extension" }
+
+    twig.extension.intl:
+        class: "Twig_Extensions_Extension_Intl"
+        public: false
+        tags:
+            - { name: "twig.extension" }
+
+    nuxia.twig.extension.case:
+        class: "Nuxia\Bundle\\NuxiaBundle\Twig\CaseExtension"
+        public: false
+        tags:
+            -  { name: "twig.extension" }
+
+    nuxia.twig.extension.object:
+        class: "Nuxia\Bundle\\NuxiaBundle\Twig\ObjectExtension"
+        public: false
+        tags:
+            -  { name: "twig.extension" }
+
+    nuxia.twig.extension.media:
+        class: "Nuxia\Bundle\\NuxiaBundle\Twig\MediaExtension"
+        public: false
+        arguments:
+            - "%nuxia.media.thumbnail_path%"
+        tags:
+            -  { name: "twig.extension" }

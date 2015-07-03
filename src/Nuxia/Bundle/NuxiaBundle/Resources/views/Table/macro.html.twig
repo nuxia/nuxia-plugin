@@ -1,0 +1,87 @@
+{% macro row(object, fields) %}
+    {% for field, options in fields %}
+        {{ _self.td(object, field, options) }}
+    {% endfor %}
+{% endmacro %}
+
+{% macro td(object, field, options) %}
+    {% set class = _self.add_class(object, field, options)|trim %}
+    <td{% if class is not empty %} class="{{ class }}"{% endif %}>{% spaceless %}{{ _self.value(object, field, options) }}{% endspaceless %}</td>
+{% endmacro %}
+
+{% macro add_class(object, field, options) %}
+    {% set class = options.class is defined ? options.class : '' %}
+    {% if options.link.row_link|default(null) and (options.link.permission is not defined or security.hasPermission(options.link.permission)) %}
+        {% set class = class|concat_attribute('row-link') %}
+    {% endif %}
+    {{ class }}
+{% endmacro %}
+
+{% macro value(object, field, options) %}
+    {% set type = options.type|default('text') %}
+    {% if options.json_field is defined %}
+        {% set value = object|field(options.json_field)[field|underscore]|default('') %}
+    {% else %}
+        {% set value = object|field(field) %}
+    {% endif %}
+    {% if options.valuelist is defined %}
+        {% set value = value(options.valuelist.category, value)[options.valuelist.field|default('label')] %}
+    {% endif %}
+    {%- if type == 'date' and value is not null -%}
+        {% if options.date.is_localized is defined and options.date.is_localized %}
+            {{ value|localizeddate(options.date.format|default('short'), options.time.format|default('none')) }}
+        {% else %}
+            {{ value|date(options.date.format|default('d/m/Y')) }}
+        {% endif %}
+    {% elseif type == 'asset' %}
+        <a href="{{ asset(value) }}" target="_blank">{{ asset(value) }}</a>
+    {% elseif type == 'money' or type == 'percent' %}
+        {% if type == 'percent' %}
+            {% set value = value * 100 %}
+        {% endif %}
+        {% set precision = options.number_format.precision|default(2) %}
+        {{ (value|round(precision)|number_format(precision, options.number_format.separator|default('.'), '&nbsp;') ~ (type == 'percent' ? '%' : ''))|raw }}
+    {% else %}
+        {% if options.translation is defined %}
+            {% if options.translation.prefix is defined %}
+                {% set value = options.translation.prefix ~ value %}
+            {% endif %}
+            {% set value = value|trans({}, options.translation.domain|default('form')) %}
+        {% endif %}
+        {% if options.link is defined and (options.link.permission is not defined or security.hasPermission(options.link.permission))
+            and (options.link.is_editable is not defined or (object.isEditable()))
+        %}
+            {% if options.link.object_method is defined %}
+                {% set object = object|field(options.link.object_method) %}
+            {% endif %}
+            <a href="{{ path(options.link.route, { '_object': object }) }}" target="{{ options.link.target|default('_self') }}">{{ value }}</a>
+        {% else %}
+            {{ value }}
+        {% endif %}
+    {% endif %}
+{% endmacro %}
+
+{% macro head(fields, model) %}
+    {% for field, options in fields %}
+        {{ _self.th(field, options, model) }}
+    {% endfor %}
+{% endmacro %}
+
+{% macro th(field, options, model) %}
+    {% set class = _self.add_class(model, field, options)|trim %}
+    {% spaceless %}
+    <th {% if class is not empty %}class="{{ class }}"{% endif %} >
+        {{ _self.label(field, options, model) }}
+    </th>
+    {% endspaceless %}
+{% endmacro %}
+
+{% macro label(field, options, model) %}
+    {% set label = options.label|default(model ~ '.' ~ field|underscore ~  '.label') %}
+    {% set label = label|trans({}, 'form') %}
+    {% if options.abbr is defined %}
+        <abbr title="{{ options.abbr|trans({}, 'form') }}">{{ label }}</abbr>
+    {% else %}
+        {{ label }}
+    {% endif %}
+{% endmacro %}

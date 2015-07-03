@@ -1,0 +1,20 @@
+form:
+    submit:
+        label: "Save"
+    filter:
+        submit:
+            label: "Search"
+        reset:
+            label: "Reset"
+    required_fields.help: "* Required fields"
+
+captcha:
+    label: "Captcha"
+
+date:
+    range:
+        start:
+            label: "Starting date"
+        end:
+            label: "Ending date"
+  

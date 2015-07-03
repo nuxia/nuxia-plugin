@@ -1,0 +1,12 @@
+services:
+    nuxia.doctrine.manager.abstract:
+        class: "Nuxia\Component\Doctrine\Manager\AbstractEntityManager"
+        abstract: true
+        calls:
+            - [ "setEntityManager", [ "@doctrine.orm.entity_manager" ] ]
+
+    nuxia.sortable.event_subscriber:
+        class: "Nuxia\Component\Doctrine\Sortable\SortableListener"
+        public: false
+        tags:
+            - { name: "doctrine.event_subscriber", connection: "default" }

@@ -1,0 +1,23 @@
+parameters:
+    router.options.generator_base_class: "Nuxia\Component\Routing\UrlGenerator"
+    session.flashbag.class: "Nuxia\Component\HttpFoundation\Session\Flash\FlashBag"
+
+services:
+    nuxia.validator.reserved_words:
+        class: "Nuxia\Component\Validator\Constraints\ReservedWordsValidator"
+        arguments:
+            - "%validator.reserved_words%"
+        tags:
+            - { name: validator.constraint_validator, alias: "nuxia.validator.reserved_words" }
+
+    nuxia.controller.abstract:
+        class: "Nuxia\Bundle\\NuxiaBundle\Controller\AbstractController"
+        abstract: true
+        calls:
+            - [ "setRouter", [ "@router" ] ]
+            - [ "setTemplating", [ "@templating" ] ]
+            - [ "setFlashBag", [ "@session.flash_bag" ] ]
+
+    nuxia.ajax.controller.abstract:
+        class: "Nuxia\Bundle\\NuxiaBundle\Controller\AbstractAjaxController"
+        abstract: true

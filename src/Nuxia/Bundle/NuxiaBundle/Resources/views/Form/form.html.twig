@@ -1,0 +1,18 @@
+{% block form %}
+    {% set form_start_attr =  {'attr': {'novalidate': 'novalidate' } } %}
+    {# @REWORK s'affranchir de action utiliser le form handler à la place #}
+    {% if action is defined %}
+        {% set form_start_attr = form_start_attr|merge({'action': action}) %}
+    {% endif %}
+    {{ form_start(form, form_start_attr) }}
+    {% block form_content %}
+        {{ form_widget(form) }}
+    {% endblock %}
+    {% block form_actions_tag %}
+        <div class="form-actions">
+            {{ form_actions(form) }}
+            {% block form_actions_content %}{% endblock %}
+        </div>
+    {% endblock %}
+    {{ form_end(form) }}
+{% endblock %}

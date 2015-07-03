@@ -1,0 +1,30 @@
+slug:
+    invalid: "The system name entered is invalid (it must not contain any accent or space or capital letter or special character)."
+reserved_words:
+    invalid:  "The word \"%word%\" is reserved for system."
+captcha:
+    invalid: "Incorrect value."
+choice:
+    invalid: "The choice selected is invalid."
+field:
+    required: "This field is required."
+    date:
+        invalid: "Invalid format. The correct format is dd/mm/yyyy."
+    time:
+        invalid: "Invalid format. The correct format is hh:mm."
+    datetime:
+        invalid: "Invalid format. The correct format is dd/mm/yyyy hh:mm."
+        range:
+            after.invalid: "The date must be after the %after%."
+            before.invalid: "The date must be before the %before%"
+            future: "The date must be after today"
+            past: "The date must be before today"
+    integer:
+        invalid: "The value must be an integer"
+    number:
+        invalid: "The number is invalid"
+    email:
+        invalid: "The e-mail address is invalid"
+    length:
+        max: "This field must not exceed {{ limit }} character.|This field must not exceed {{ limit }} characters."
+        min: "This field must have at least {{ limit }} character.|This field must have at least {{ limit }} characters."

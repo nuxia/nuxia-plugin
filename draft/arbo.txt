@@ -1,0 +1,35 @@
+readme.md : (installation + configuration + fonctionnalités *)
+/doc
+	cookbooks.md :
+		- Traduction formulaire
+		- Notes champ upload
+		- Injecter un paramètre/service dans tous les templates twig 
+		- Utiliser un service abstrait (à écrire + lien documentation symfony2)
+		- Contrainte d'unicité multiple 
+		- Utiliser un listener doctrine (à écrire)
+		- Lien utiles
+	media.md :
+		- Documentation existante
+	/features
+		form_type.md =>
+		    - Généralités (à finir) 
+		mailer.md => 
+			- Documentation mailer existante
+		doctrine_entity_manager.md:
+			- Documentation AbstractEntityManager ( à écrire)
+		assets (javascript et css)
+			
+		
+Lien vers la configuration :
+- Traduction form
+- Captcha plus tard 
+- Reserved Word
+- Utiliser un layout de formulaire (Plugin / fonctionnalité)
+- Mailer
+- Paginator ou configuration interne au fichier
+- Injecter un paramètre/service dans tous les templates twig 
+
+*Fonctionnalités :
+- Ecrire un controleur qui n'hésite pas de container aware
+- Service du bundle
+- BaseModel getModelName

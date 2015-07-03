@@ -1,0 +1,40 @@
+parameters:
+    twig.extension.form.class: "Nuxia\Bundle\\NuxiaBundle\Twig\FormExtension"
+
+services:
+    nuxia.form.type:
+        class: "Nuxia\Component\Form\Type\FormType"
+        tags:
+            - { name: "form.type", alias: "nuxia_form" }
+
+    nuxia.form.array.type:
+        class: "Nuxia\Component\Form\Type\ArrayType"
+        tags:
+            - { name: "form.type", alias: "nuxia_array"}
+
+    nuxia.form.media_data.type:
+        class: "Nuxia\Component\Form\Type\MediaDataType"
+        tags:
+            - { name: "form.type", alias: "nuxia_media_data"}
+    
+    nuxia.filter_form.type:
+        class: "Nuxia\Component\Form\Type\FilterType"
+        tags:
+            - { name: "form.type", alias: "nuxia_filter"}
+
+    nuxia.reset.type:
+        class: "Nuxia\Component\Form\Type\ResetType"
+        tags:
+            - { name: "form.type", alias: "nuxia_reset"}
+
+    nuxia.date_range.type:
+        class: "Nuxia\Component\Form\Type\DateRangeType"
+        tags:
+            - { name: "form.type", alias: "nuxia_date_range"}
+
+    nuxia.form.handler.abstract:
+        class: "Nuxia\Component\Form\Handler\AbstractFormHandler"
+        abstract: true
+        calls:
+            - [ "setRequestStack", [ "@request_stack" ] ]
+            - [ "setRouter", [ "@router" ] ]

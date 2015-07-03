@@ -1,0 +1,14 @@
+services:
+    nuxia_dynamic_media.default.controller:
+        parent: "nuxia.ajax.controller.abstract"
+        class: "Nuxia\Bundle\DynamicMediaBundle\Controller\DefaultController"
+        calls:
+            - [ "setDynamicMediaPaginator", [ "@nuxia_dynamic_media.paginator" ] ]
+            - [ "setMediaFilterFormHandler", [ "@mold_core.media.filter_form.handler" ] ]
+            - [ "setTemplating", [ "@templating" ] ]
+
+    nuxia_dynamic_media.paginator:
+        parent: "mold_core.media.paginator.abstract"
+        class: "Nuxia\Bundle\DynamicMediaBundle\\Pager\DynamicMediaPaginator"
+        calls:
+            - [ "setLimit", [ "%nuxia_dynamic_media.paginator.limit%" ] ]

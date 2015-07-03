@@ -1,0 +1,21 @@
+<table>
+    <caption>{{ 'caption'|trans({}, 'messages') }}</caption>
+    <tr class="media_filters">
+        <th>{{ 'search.label'|trans({}, 'messages') }}</th>
+        <td>
+            {{ form_widget(filter_form.label) }}
+            <a class="submit" href="#">{{ 'search.submit'|trans({}, 'messages') }}</a>
+            <a class="reset" href="#">{{ 'search.reset'|trans({}, 'messages') }}</a>
+        </td>
+    </tr>
+    <tr class="media_link">
+        <th>{{ 'item.link'|trans({}, 'messages') }}</th>
+        <td>
+            <input class="link" type="text" name="link" readonly/>
+            <a class="copy" href="#">{{ 'item.copy'|trans({}, 'messages') }}</a>
+        </td>
+    </tr>
+</table>
+<div class="medias">
+    {% include '@NuxiaDynamicMedia/Default/pagination.html.twig' with {'paginator': paginator } only %}
+</div>
