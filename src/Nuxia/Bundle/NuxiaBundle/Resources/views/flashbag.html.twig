@@ -1,0 +1,10 @@
+<noscript>
+    <div class="alert alert-warning">{{ 'no.js.warning'|trans({}, 'flash') }}</div>
+</noscript>
+{% for type, flashes in app.session.flashbag.all() %}
+    {% for flash in flashes %}
+        <div class="alert alert-{{ type }}{% if flash.autoclose %} autoclose{% endif %}">{{ flash.message|trans(flash.translation_parameters, 'flash')|raw }}
+            <a class="close" data-dismiss="alert" href="#">{{ close_html|default('&times;')|raw }}</a>
+        </div>
+    {% endfor %}
+{% endfor %}
