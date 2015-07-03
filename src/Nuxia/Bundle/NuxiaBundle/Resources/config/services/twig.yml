@@ -32,7 +32,7 @@ services:
             -  { name: "twig.extension" }
 
     nuxia.twig.extension.html:
-        class: "Nuxia\Bundle\NuxiaBundle\Twig\HtmlExtension"
+        class: "Nuxia\Bundle\\NuxiaBundle\Twig\HtmlExtension"
         public: false
         tags:
             -  { name: "twig.extension" }

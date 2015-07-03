@@ -20,6 +20,9 @@ CHANGELOG
 - La fonction `twig` `join_attribute` a été renommé `concat_attribute` (voir `UPGRADE.md`)
 - Ajout de traductions dans nuxia (voir `UPGRADE.md`).
 - Suppression du scope `request` (voir `UPGRADE.md`).
+- Ajout d'un html extension
+- Ajout de traductions globales
+- Ajout d'un template pour afficher les `flashbags` (voir `UPGRADE.md`).
 
 Controller : 
 
