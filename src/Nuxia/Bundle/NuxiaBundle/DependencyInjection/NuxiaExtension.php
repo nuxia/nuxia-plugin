@@ -48,7 +48,6 @@ class NuxiaExtension extends Extension
             $loader->load('services/security.yml');
             //$this->registerLoginConfiguration($config, $container, $loader);
         }
-        unset($config['security']);
     }
 
     /**
@@ -61,7 +60,6 @@ class NuxiaExtension extends Extension
         if ($config['security']['login']['enabled']) {
             $loader->load('services/login.yml');
         }
-        unset($config['security']['login']);
     }
 
     /**
@@ -72,7 +70,6 @@ class NuxiaExtension extends Extension
     private function registerMediaConfiguration(array &$config, ContainerBuilder $container, YamlFileLoader $loader)
     {
         $container->setParameter('nuxia.media.thumbnail_path', $config['media']['thumbnail_path']);
-        unset($config['media']);
     }
 
     /**
@@ -84,7 +81,6 @@ class NuxiaExtension extends Extension
     {
         $from = $config['mailer']['from'];
         $container->setParameter('mailer.from', array($from['email'] => $from['name']));
-        unset($config['email']['from']);
     }
 
     /**
@@ -96,6 +92,5 @@ class NuxiaExtension extends Extension
     {
         $loader->load('services/validator.yml');
         $container->setParameter('validator.reserved_words', $config['validator']['reserved_words']);
-        unset($config['validator']);
     }
 }
