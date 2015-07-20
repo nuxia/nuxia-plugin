@@ -2,10 +2,12 @@
 
 namespace Nuxia\Component;
 
-use Symfony\Component\PropertyAccess\PropertyAccess;
+use Nuxia\Component\Helper\ModelUtil\ModelTrait;
 
 abstract class AbstractModel implements ModelInterface
 {
+    use ModelTrait;
+
     /**
      * {@inheritdoc}
      */
@@ -43,41 +45,5 @@ abstract class AbstractModel implements ModelInterface
                 return $namespace;
                 break;
         }
-    }
-
-    /**
-     * @param $input
-     * @param array  $fields
-     *
-     * @return AbstractModel
-     */
-    public function fromArrayOrObject($input, array $fields = array())
-    {
-        $accessor = PropertyAccess::createPropertyAccessor();
-        $isArray = is_array($input);
-        if ($isArray && count($fields) === 0) {
-            $fields = array_keys($input);
-        }
-        foreach ($fields as $field) {
-            $path = $isArray ? '[' . $field . ']' : $field;
-            $accessor->setValue($this, $field, $accessor->getValue($input, $path));
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param array $fields
-     *
-     * @return array
-     */
-    public function toArray(array $fields)
-    {
-        $accessor = PropertyAccess::createPropertyAccessor();
-        $array = array();
-        foreach ($fields as $field) {
-            $array[$field] = $accessor->getValue($this, $field);
-        }
-        return $array;
     }
 }
