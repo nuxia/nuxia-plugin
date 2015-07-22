@@ -3,6 +3,7 @@
     margin-top: 10px;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
     font-family: arial, sans-serif;
+    font-size: 14px;
 }
 
 #dynamic_media table {
@@ -65,12 +66,16 @@
     width: 58%;
     display: inline-block;
     margin: 0 5px 0 0;
+    border: 1px solid #cccccc;
+    padding: 4px 6px;
+    color: #333333;
 }
 
 #dynamic_media table input[type="text"].link {
     width: 71%;
     border: 0;
-    box-shadow: 0 0 0 #fff;
+    box-shadow: 0 0 0 #ffffff;
+    background-color: #ffffff;
 }
 
 #dynamic_media table .submit {
@@ -106,7 +111,7 @@
     font-size: 12px;
     font-weight: bold;
     line-height: 20px;
-    margin-bottom: 0;
+    margin: 0;
     padding: 4px 12px;
     text-align: center;
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
@@ -207,6 +212,7 @@
     overflow: hidden;
     font-weight: bold;
     margin: 0;
+    padding: 0;
 }
 
 #dynamic_media .media_list li {
@@ -214,6 +220,7 @@
     float: left;
     width: 20%;
     height: 110px;
+    margin: 0;
     padding: 10px 0;
     text-align: center;
     box-sizing: content-box;
