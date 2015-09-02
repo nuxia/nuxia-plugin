@@ -2,13 +2,21 @@
 
 namespace Nuxia\Bundle\NuxiaBundle\Twig;
 
-//@TODO a implementer
+/**
+ * @TODO not implemented yet
+ * This extension allows you to "houralize" a \Datetime object or a string representing hour (hh:mm) from twig templates
+ *
+ * @author Yannick Snobbert <yannick.snobbert@gmail.com>
+ */
 class DatetimeExtension extends \Twig_Extension
 {
+    /**
+     * {@inheritDoc}
+     */
     public function getFilters()
     {
         return array(
-            'houralize' => new \Twig_Filter_Method($this, 'houralize'),
+            new \Twig_SimpleFilter('houralize', array($this, 'houralize')),
         );
     }
 
@@ -21,6 +29,9 @@ class DatetimeExtension extends \Twig_Extension
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getName()
     {
         return 'datetime';

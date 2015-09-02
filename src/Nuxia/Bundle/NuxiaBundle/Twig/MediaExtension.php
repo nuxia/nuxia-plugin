@@ -7,28 +7,39 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 
 class MediaExtension extends \Twig_Extension
 {
-    protected $twig;
+    /**
+     * @var string $thumbnailPath
+     */
     protected $thumbnailPath;
 
+    /**
+     * @param string $thumbnailPath
+     */
     public function __construct($thumbnailPath)
     {
         $this->thumbnailPath = $thumbnailPath;
     }
 
-    public function initRuntime(\Twig_Environment $environment)
-    {
-        $this->twig = $environment;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     public function getFunctions()
     {
         return array(
-            'render_data' => new \Twig_Function_Method($this, 'renderData', array('is_safe' => array('html'))),
-            'render_thumbnail' => new \Twig_Function_Method($this, 'renderThumbnail', array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('render_data', array($this, 'renderData'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('render_thumbnail', array($this, 'renderThumbnail'), array('is_safe' => array('html'))),
         );
     }
 
-    public function renderData(AbstractMedia $media, array $parameters = array())
+    /**
+     * @TODO refactor with renderThumbnail function
+     * @param  \Twig_Environment $environment
+     * @param  AbstractMedia     $media
+     * @param  array             $parameters
+     *
+     * @return string
+     */
+    public function renderData(\Twig_Environment $environment, AbstractMedia $media, array $parameters = array())
     {
         $key = $media->isImage() ? 'link' : 'img';
         $buffer = isset($parameters[$key]) ? $parameters[$key] : array();
@@ -39,19 +50,31 @@ class MediaExtension extends \Twig_Extension
         if (!$resolvedParameters->has('label')) {
             $resolvedParameters->set('label', $media->getLabel());
         }
-        return $this->twig->render('NuxiaBundle:Media:data.html.twig', $resolvedParameters->all());
+        return $environment->render('NuxiaBundle:Media:data.html.twig', $resolvedParameters->all());
     }
 
-    public function renderThumbnail(AbstractMedia $media, array $parameters = array())
+    /**
+     * @TODO refactor with renderData function
+     * @param  \Twig_Environment $environment
+     * @param  AbstractMedia     $media
+     * @param  array             $parameters
+     *
+     * @return string
+     */
+    public function renderThumbnail(\Twig_Environment $environment, AbstractMedia $media, array $parameters = array())
     {
         $resolvedParameters = new ParameterBag(array_merge(
             $parameters,
             array('thumbnail_path' => $this->thumbnailPath)
         ));
         $resolvedParameters->set('media', $media);
-        return $this->twig->render('NuxiaBundle:Media:thumbnail.html.twig', $resolvedParameters->all());
+
+        return $environment->render('NuxiaBundle:Media:thumbnail.html.twig', $resolvedParameters->all());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getName()
     {
         return 'media';

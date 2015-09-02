@@ -6,6 +6,9 @@ use Nuxia\Component\Parser;
 
 class ObjectExtension extends \Twig_Extension
 {
+    /**
+     * {@inheritDoc}
+     */
     public function getFilters()
     {
         return array(
@@ -13,9 +16,15 @@ class ObjectExtension extends \Twig_Extension
         );
     }
 
+    /**
+     * @param  object $object
+     * @param  string $field
+     *
+     * @return mixed
+     */
     public function field($object, $field)
     {
-        //@TODO a opti avec le routing (même système)
+        //@TODO refactoring with routing system
         $buffer = strpos($field, '_') === false ? array($field) : (explode('_', $field));
         $value = $object;
         foreach ($buffer as $segment) {
@@ -25,6 +34,9 @@ class ObjectExtension extends \Twig_Extension
         return $value;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getName()
     {
         return 'object';

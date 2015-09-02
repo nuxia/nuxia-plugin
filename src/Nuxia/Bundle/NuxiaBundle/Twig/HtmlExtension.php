@@ -2,6 +2,13 @@
 
 namespace Nuxia\Bundle\NuxiaBundle\Twig;
 
+/**
+ * This extension adds usefull html tools on twig template :
+ * - concat_attribute (@TODO rename) : @TODO to document
+ * - render_html_attributes : convert array to html attributes
+ *
+ * @author Yannick Snobbert <yannick.snobbert@gmail.com>
+ */
 class HtmlExtension extends \Twig_Extension
 {
     /**
@@ -32,6 +39,11 @@ class HtmlExtension extends \Twig_Extension
         } else {
             return $value . ' ' . $join;
         }
+    }
+
+    //@TODO render html attributes from array (@see form_div_layout)
+    public function renderAttributes()
+    {
     }
 
     /**
