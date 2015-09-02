@@ -4,6 +4,12 @@ namespace Nuxia\Bundle\NuxiaBundle\Twig;
 
 use Nuxia\Component\Parser;
 
+/**
+ * //@TODO Check if attribute function already provide this feature? and use propertyPathAccessor instead of own propertyPath
+ * This extension adds a filter to traverse an object (as property path component does)
+ *
+ * @author Yannick Snobbert <yannick.snobbert@gmail.com>
+ */
 class ObjectExtension extends \Twig_Extension
 {
     /**
@@ -12,7 +18,7 @@ class ObjectExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            'field' => new \Twig_Filter_Method($this, 'field'),
+            new \Twig_SimpleFilter('field', array($this, 'field')),
         );
     }
 
