@@ -23,6 +23,14 @@ abstract class AbstractEntityManager implements ManagerInterface
     }
 
     /**
+     * @return EntityManagerInterface
+     */
+    public function getEntityManager()
+    {
+        return $this->em;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getRepository($entity = null)
