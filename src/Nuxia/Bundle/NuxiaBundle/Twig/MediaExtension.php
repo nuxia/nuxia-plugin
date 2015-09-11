@@ -26,8 +26,8 @@ class MediaExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('render_data', array($this, 'renderData'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFunction('render_thumbnail', array($this, 'renderThumbnail'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('render_data', array($this, 'renderData'), array('is_safe' => array('html'), 'needs_environment' => true)),
+            new \Twig_SimpleFunction('render_thumbnail', array($this, 'renderThumbnail'), array('is_safe' => array('html'), 'needs_environment' => true)),
         );
     }
 
