@@ -1,25 +1,17 @@
 services:
     security.authentication.provider.dao:
         class: Nuxia\Component\Security\Authentication\AuthenticationProvider
-        abstract: true 
+        abstract: true
         arguments: ["","@security.user_checker","","@security.encoder_factory","%security.authentication.hide_user_not_found%"]
         calls:
             - [ "setDisablePassword", [ "%nuxia.security.disable_password%" ] ]
-            
+
     nuxia.security.manager.default:
         class: Nuxia\Component\Security\BaseSecurityManager
         public: false
         calls:
             - [ "setAuthorizationChecker", [ "@security.authorization_checker" ] ]
             - [ "setTokenStorage", [ "@security.token_storage" ] ]
-            
+
     nuxia.security.manager:
         alias: "nuxia.security.manager.default"
-        
-    twig.extension.security:
-        class: Nuxia\Bundle\NuxiaBundle\Twig\SecurityExtension
-        public: false
-        arguments:
-            - "@nuxia.security.manager"
-        tags:
-            -  { name: "twig.extension" }

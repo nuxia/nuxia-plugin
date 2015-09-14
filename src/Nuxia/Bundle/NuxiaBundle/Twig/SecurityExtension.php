@@ -9,7 +9,7 @@ use Nuxia\Component\Security\SecurityManagerInterface;
  *
  * @author Yannick Snobbert <yannick.snobbert@gmail.com>
  */
-class SecurityExtension extends \Twig_Extension
+class SecurityExtension extends \Symfony\Bridge\Twig\Extension\SecurityExtension
 {
     /**
      * @var SecurityManagerInterface
@@ -19,7 +19,7 @@ class SecurityExtension extends \Twig_Extension
     /**
      * @param SecurityManagerInterface $securityManager
      */
-    public function __construct(SecurityManagerInterface $securityManager)
+    public function setSecurityManager(SecurityManagerInterface $securityManager)
     {
         $this->securityManager = $securityManager;
     }
@@ -30,13 +30,5 @@ class SecurityExtension extends \Twig_Extension
     public function getGlobals()
     {
         return array('security' => $this->securityManager);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getName()
-    {
-        return 'security';
     }
 }

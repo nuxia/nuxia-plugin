@@ -44,6 +44,7 @@ class NuxiaExtension extends Extension
     private function registerSecurityConfiguration(array &$config, ContainerBuilder $container, YamlFileLoader $loader)
     {
         if ($config['security']['enabled']) {
+            $container->setParameter('nuxia.security.security.enabled', $config['security']['enabled']);
             $container->setParameter('nuxia.security.disable_password', $config['security']['disable_password']);
             $loader->load('services/security.yml');
             //$this->registerLoginConfiguration($config, $container, $loader);
