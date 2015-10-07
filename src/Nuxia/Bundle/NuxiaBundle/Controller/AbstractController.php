@@ -121,7 +121,7 @@ abstract class AbstractController
      */
     protected function getReferer(Request $request, $defaultRoute, array $defaultParameters = array())
     {
-        $referer = $request->get('referer');
+        $referer = $request->headers->get('referer');
         if ($referer !== null && $referer !== $request->getUri()) {
             return $referer;
         }
