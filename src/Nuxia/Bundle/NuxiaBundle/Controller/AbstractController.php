@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -244,11 +245,11 @@ abstract class AbstractController
      * @param  string          $message  A message
      * @param  \Exception|null $previous The previous exception
      *
-     * @return AccessDeniedException
+     * @return AccessDeniedHttpException
      */
     protected function createAccessDeniedException($message = 'Access Denied', \Exception $previous = null)
     {
-        return new AccessDeniedException($message, $previous);
+        return new AccessDeniedHttpException($message, $previous);
     }
 
     /**
