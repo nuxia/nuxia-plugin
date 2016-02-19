@@ -18,7 +18,7 @@
     </div>
 {% endblock form_widget_compound %}
 
-{# Bloc surchargé pour ne pas "render "les champs de type action (button) #}
+{# Bloc surchargé pour ne pas "render" les champs de type action (button) #}
 {% block form_rows %}
     {% for child in form if child.vars.render_as_action is not defined %}
         {{ form_row(child) }}
@@ -44,10 +44,10 @@
     </div>
 {% endblock form_row %}
 
+{# @TODO * en css : (adapter pour checkbox_label) #}
 {# Bloc surchargé pour ne pas "humanize" et pour les * quand le champ est obligatoire #}
 {% block form_label %}
     {%- if label is not empty -%}
-        {#@NUXIA utilisé le parent quand frontend end bundle sera taggé #}
         {#{{ parent() }}#}
         {% if not compound %}
             {% set label_attr = label_attr|merge({'for': id}) %}
@@ -88,15 +88,7 @@
     {{ block('form_label') }}
 {% endblock checkbox_label %}
 
-{# Blocs des type de nuxia #}
-{% block nuxia_captcha_widget %}
-    <div class="captcha widget">
-        <img src="{{ image }}"/>
-        {{ form_widget(form) }}
-    </div>
-{% endblock %}
-
-{% block nuxia_media_data_widget %}
+{% block media_data_widget %}
     {{ render_data(form.vars.data) }}
 {% endblock %}
 
@@ -111,24 +103,3 @@
         {% endif %}
     {% endfor %}
 {% endblock %}
-
-{# @SYMFONY 2.8 : A supprimer (ajouter pour la trad du placeholder) #}
-{%- block choice_widget_collapsed -%}
-    {%- if required and placeholder is none and not placeholder_in_choices and not multiple -%}
-        {% set required = false %}
-    {%- endif -%}
-    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
-        {%- if placeholder is not none -%}
-            <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ placeholder is empty ? '' : placeholder|trans({}, translation_domain) }}</option>
-        {%- endif -%}
-        {%- if preferred_choices|length > 0 -%}
-            {% set options = preferred_choices %}
-            {{- block('choice_widget_options') -}}
-            {%- if choices|length > 0 and separator is not none -%}
-                <option disabled="disabled">{{ separator }}</option>
-            {%- endif -%}
-        {%- endif -%}
-        {%- set options = choices -%}
-        {{- block('choice_widget_options') -}}
-    </select>
-{%- endblock choice_widget_collapsed -%}

@@ -9,6 +9,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MediaDataType extends AbstractType
 {
+    /**
+     * {@inheritDoc}
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
@@ -23,14 +26,12 @@ class MediaDataType extends AbstractType
         );
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         //@TODO Dans le cas d'une erreur cette ligne est obligatoire pour visualiser le media
         $view->vars['data'] = $options['data'];
-    }
-
-    public function getName()
-    {
-        return 'nuxia_media_data';
     }
 }

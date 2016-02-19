@@ -12,15 +12,28 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 //@TODO ajouter translation domain null pour ne pas avoir de traduction pour les labels et help (form_layout)
 class ArrayType extends AbstractType
 {
+    /**
+     * @var string
+     */
     const CONSTRAINTS_LOCATION = 'Symfony\Component\Validator\Constraints';
+
+    /**
+     * @var array
+     */
     protected $parsedConstraints;
 
+    /**
+     * {@inheritDoc}
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired('fields');
         $resolver->setDefaults(array('constraint_messages' => array(), 'root_view' => array()));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         foreach ($options['fields'] as $field => $parameters) {
@@ -42,6 +55,11 @@ class ArrayType extends AbstractType
         }
     }
 
+    /**
+     * @param array $fieldOptions
+     * @param array $constraints
+     * @param array $defaultMessages
+     */
     private function addConstraints(array &$fieldOptions, array $constraints, array $defaultMessages)
     {
         $fieldOptions['constraints'] = array();
@@ -53,6 +71,10 @@ class ArrayType extends AbstractType
         }
     }
 
+    /**
+     * @param array $viewOptions
+     * @param array $constraints
+     */
     private function addViewOptionsFromConstraint(array &$viewOptions, $constraints)
     {
         if (array_key_exists('Range', $constraints)) {
@@ -64,6 +86,9 @@ class ArrayType extends AbstractType
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         foreach ($options['root_view'] as $var => $value) {
@@ -78,11 +103,22 @@ class ArrayType extends AbstractType
         }
     }
 
+    /**
+     * @param array  $array
+     * @param string $key
+     *
+     * @return array
+     */
     private function getArrayFromKey(array $array, $key)
     {
         return isset($array[$key]) ? $array[$key] : array();
     }
 
+    /**
+     * @param array $constraints
+     *
+     * @return array
+     */
     private function parseConstraintsArray(array $constraints)
     {
         foreach ($constraints as $constraint => $options) {
@@ -96,13 +132,11 @@ class ArrayType extends AbstractType
         return $constraints;
     }
 
-    public function getName()
-    {
-        return 'nuxia_array';
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     public function getParent()
     {
-        return 'nuxia_form';
+        return FormType::class;
     }
 }

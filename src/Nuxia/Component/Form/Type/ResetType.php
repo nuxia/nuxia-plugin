@@ -9,18 +9,27 @@ use Symfony\Component\Form\FormView;
 
 class ResetType extends AbstractType implements ButtonTypeInterface
 {
+    /**
+     * {@inheritDoc}
+     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['url'] = $form->getParent()->getConfig()->getAction();
     }
 
-    public function getName()
+    /**
+     * {@inheritDoc}
+     */
+    public function getBlockPrefix()
     {
         return 'nuxia_reset';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getParent()
     {
-        return 'reset';
+        return \Symfony\Component\Form\Extension\Core\Type\ResetType::class;
     }
 }

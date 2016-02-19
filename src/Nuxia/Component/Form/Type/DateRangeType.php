@@ -3,6 +3,7 @@
 namespace Nuxia\Component\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
@@ -15,6 +16,9 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 //@TODO Utiliser la constrainte DatetimeComparator
 class DateRangeType extends AbstractType
 {
+    /**
+     * {@inheritDoc}
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
@@ -24,12 +28,15 @@ class DateRangeType extends AbstractType
             'error_bubbling' => false,
         ));
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addEventListener(FormEvents::SUBMIT, array($this, 'process'));
         $contraints = $options['required'] ? array(new NotBlank(array('message' => 'field.required'))) : array();
-        $builder->add('start', 'date', array(
+        $builder->add('start', DateType::class, array(
             'format' => $options['format'],
             'widget' => 'single_text',
             'invalid_message' => 'field.date.invalid',
@@ -37,7 +44,7 @@ class DateRangeType extends AbstractType
             'input' => 'string',
             'constraints' => $contraints,
         ));
-        $builder->add('end', 'date', array(
+        $builder->add('end', DateType::class, array(
             'format' => $options['format'],
             'widget' => 'single_text',
             'invalid_message' => 'field.date.invalid',
@@ -46,13 +53,19 @@ class DateRangeType extends AbstractType
             'constraints' => $contraints,
         ));
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         $view->children['start']->vars['label'] = 'date.range.start.label';
         $view->children['end']->vars['label'] = 'date.range.end.label';
     }
-    
+
+    /**
+     * @param FormEvent $event
+     */
     public function process(FormEvent $event)
     {
         $form = $event->getForm();
@@ -67,14 +80,12 @@ class DateRangeType extends AbstractType
             $event->setData($data);
         }
     }
-    
-    public function getName()
-    {
-        return 'nuxia_date_range';
-    }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getParent()
     {
-        return 'nuxia_form';
+        return FormType::class;
     }
 }
