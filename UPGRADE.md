@@ -1,4 +1,6 @@
-# UPGRADE 2.6
+# UPGRADE 2.8
+
+- NuxiaDynamicMediaBundle has been removed. If you need it add nuxia/dynamic-media-bundle on your project composer
 
 #### Bundle
 
