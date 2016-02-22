@@ -4,6 +4,7 @@ CHANGELOG
 ### 2.8
 
 - NuxiaDynamicMediaBundle has been removed
+- AbstractMedia and MediaExtension has been removed
 - Fixed twig deprecations : getGlobals and initRuntime
 - Fixed Symfony 2.8 deprecations
 - Deleted LoginType and LoginFormHandler (useless with the new component Guard Authentification)
