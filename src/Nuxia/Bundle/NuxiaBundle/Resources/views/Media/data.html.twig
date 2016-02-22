@@ -1,9 +1,0 @@
-{% if media.isImage %}
-    <img{% if class is defined %} class="{{ class }}"{% endif %} src="{{ asset(media.webpath) }}" title="{{ label }}"
-                                                                 alt="{{ label }}"/>
-{% else %}
-    <a{% if class is defined %} class="{{ class }}"{% endif %} href="{{ asset(media.webpath) }}" target="_blank"
-                                                               title="{{ label }}">
-        {{ label }}
-    </a>
-{% endif %}
