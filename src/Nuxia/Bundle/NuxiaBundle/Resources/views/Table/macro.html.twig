@@ -25,7 +25,7 @@
         {% set value = object|field(field) %}
     {% endif %}
     {% if options.valuelist is defined %}
-        {% set value = value(options.valuelist.category, value)[options.valuelist.field|default('label')] %}
+        {# {% set value = value(options.valuelist.category, value)[options.valuelist.field|default('label')] %} #}
     {% endif %}
     {%- if type == 'date' and value is not null -%}
         {% if options.date.is_localized is defined and options.date.is_localized %}
