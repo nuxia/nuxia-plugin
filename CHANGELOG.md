@@ -8,6 +8,7 @@ CHANGELOG
 - Fixed twig deprecations : getGlobals and initRuntime
 - Fixed Symfony 2.8 deprecations
 - Deleted LoginType and LoginFormHandler (useless with the new component Guard Authentification)
+- Added json fields management traits and interfaces
 
 ### 2.7
 
@@ -35,7 +36,7 @@ CHANGELOG
 - Suppression du bundle `NuxiaFrontendBundle` (voir `UPGRADE.md`).
 - Suppression des spaceless inutiles pour les performances.
 
-Controller : 
+Controller :
 
  - Ajout de méthodes raccourcis `generateUrl`, `createAccessDeniedException`, `createNotFoundException`, `addFlash`et `render`. Ces méthodes sont similaires à du base `controller` de `Symfony`
  - Suppression et changement de plusieurs méthodes
@@ -45,7 +46,7 @@ Controller :
 
 #### Config
 
-- Nouveau component. Il est sur github 
+- Nouveau component. Il est sur github
 
 
 #### Console
@@ -95,7 +96,7 @@ Controller :
 
 #### Form
 
-- L'affichage de l'help se fait maintenant grâce à l'`helper` de vue `form_help` ce qui permet d'utiliser la hiérarchie des `FormType` (comme `form_widget`, `form_row` et `form_label`)  
+- L'affichage de l'help se fait maintenant grâce à l'`helper` de vue `form_help` ce qui permet d'utiliser la hiérarchie des `FormType` (comme `form_widget`, `form_row` et `form_label`)
 
 ### 2.4.00
 
