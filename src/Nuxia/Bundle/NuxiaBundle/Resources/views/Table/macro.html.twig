@@ -1,12 +1,14 @@
 {% macro row(object, fields) %}
+    {% from _self import td %}
     {% for field, options in fields %}
-        {{ _self.td(object, field, options) }}
+        {{ td(object, field, options) }}
     {% endfor %}
 {% endmacro %}
 
 {% macro td(object, field, options) %}
-    {% set class = _self.add_class(object, field, options)|trim %}
-    <td{% if class is not empty %} class="{{ class }}"{% endif %}>{% spaceless %}{{ _self.value(object, field, options) }}{% endspaceless %}</td>
+    {% from _self import add_class, value %}
+    {% set class = add_class(object, field, options)|trim %}
+    <td{% if class is not empty %} class="{{ class }}"{% endif %}>{% spaceless %}{{ value(object, field, options) }}{% endspaceless %}</td>
 {% endmacro %}
 
 {% macro add_class(object, field, options) %}
@@ -62,16 +64,18 @@
 {% endmacro %}
 
 {% macro head(fields, model) %}
+    {% from _self import th %}
     {% for field, options in fields %}
-        {{ _self.th(field, options, model) }}
+        {{ th(field, options, model) }}
     {% endfor %}
 {% endmacro %}
 
 {% macro th(field, options, model) %}
-    {% set class = _self.add_class(model, field, options)|trim %}
+    {% from _self import add_class, label %}
+    {% set class = add_class(model, field, options)|trim %}
     {% spaceless %}
     <th {% if class is not empty %}class="{{ class }}"{% endif %} >
-        {{ _self.label(field, options, model) }}
+        {{ label(field, options, model) }}
     </th>
     {% endspaceless %}
 {% endmacro %}

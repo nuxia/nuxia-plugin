@@ -1,10 +1,11 @@
 {% macro overview(form) %}
+    {% from _self import overview %}
     {% if form.parent is empty %}
         <ul class="separator inline">
     {% endif %}
     {% for field in form %}
         {% if field.count %}
-            {{ _self.overview(field) }}
+            {{ overview(field) }}
         {% elseif field.vars.value %}
             <li>{{ form_label(field, null, {'required': false}) }} <span>{{ field.vars.value }}</span></li>
         {% endif %}
