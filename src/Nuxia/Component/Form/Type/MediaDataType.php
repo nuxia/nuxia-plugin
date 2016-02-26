@@ -16,7 +16,6 @@ class MediaDataType extends AbstractType
     {
         $resolver->setDefaults(
             array(
-                'read_only' => true,
                 'compound' => false,
                 'mapped' => false,
                 'required' => false,
@@ -33,5 +32,6 @@ class MediaDataType extends AbstractType
     {
         //@TODO Dans le cas d'une erreur cette ligne est obligatoire pour visualiser le media
         $view->vars['data'] = $options['data'];
+        $view->vars['attr']['readonly'] = true;
     }
 }
