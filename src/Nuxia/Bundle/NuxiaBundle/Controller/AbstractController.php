@@ -150,7 +150,7 @@ abstract class AbstractController
      * @param  Request $request    The current request
      * @param  string  $controller The controller name
      * @param  array   $path       An array of path parameters
-     * @param  array  $ query      An array of query parameters
+     * @param  array   $query      An array of query parameters
      *
      * @return Response A Response instance
      */
@@ -245,19 +245,19 @@ abstract class AbstractController
      * @param  string          $message  A message
      * @param  \Exception|null $previous The previous exception
      *
-     * @return AccessDeniedHttpException
+     * @return AccessDeniedException
      */
     protected function createAccessDeniedException($message = 'Access Denied', \Exception $previous = null)
     {
-        return new AccessDeniedHttpException($message, $previous);
+        return new AccessDeniedException($message, $previous);
     }
 
     /**
      * Generates a URL from the given parameters.
      *
-     * @param  string      $route         The name of the route
-     * @param  mixed       $parameters    An array of parameters
-     * @param  bool|string $referenceType The type of reference (one of the constants in UrlGeneratorInterface)
+     * @param string $route         The name of the route
+     * @param mixed  $parameters    An array of parameters
+     * @param int     $referenceType The type of reference to be generated (one of the constants)
      *
      * @return string The generated URL
      *
