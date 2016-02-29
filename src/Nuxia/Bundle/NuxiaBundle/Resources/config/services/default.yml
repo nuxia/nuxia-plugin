@@ -1,3 +1,6 @@
+parameters:
+    router.options.generator_base_class: Nuxia\Component\Routing\UrlGenerator
+
 services:
     nuxia.validator.reserved_words:
         class: Nuxia\Component\Validator\Constraints\ReservedWordsValidator
