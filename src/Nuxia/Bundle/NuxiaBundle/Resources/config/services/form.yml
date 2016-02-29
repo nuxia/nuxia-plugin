@@ -1,6 +1,3 @@
-parameters:
-    twig.extension.form.class: Nuxia\Bundle\NuxiaBundle\Twig\FormExtension
-
 services:
     nuxia.form.handler.abstract:
         class: Nuxia\Component\Form\Handler\AbstractFormHandler
