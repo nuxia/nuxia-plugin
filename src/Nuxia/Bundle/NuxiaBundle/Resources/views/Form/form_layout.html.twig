@@ -92,8 +92,8 @@
     {{ render_media(form.vars.data) }}
 {% endblock %}
 
-{% block nuxia_reset_widget %}
-    <a href="{{ url }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain) }}</a>
+{% block reset_widget %}
+    <a href="{{ form.parent.vars.action }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain) }}</a>
 {% endblock %}
 
 {% block form_actions %}
