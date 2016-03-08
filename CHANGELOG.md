@@ -9,6 +9,7 @@ CHANGELOG
 - Fixed Symfony 2.8 deprecations
 - Deleted LoginType and LoginFormHandler (useless with the new component Guard Authentification)
 - Added json fields management traits and interfaces
+- Deleted NuxiaResetType (useless)
 
 ### 2.7
 

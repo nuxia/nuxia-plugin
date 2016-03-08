@@ -2,23 +2,24 @@
 
 - NuxiaDynamicMediaBundle has been removed. If you need it add nuxia/dynamic-media-bundle on your project composer
 - AbstractMedia and MediaExtension has been removed. If you need it add nuxia/media-bundle on your project composer
+- NuxiaResetType has been deleted. You must rely on ResetType if you used it or overrided the nuxia_reset_widget layout block.
 
 #### Bundle
 
 - Il faut supprimer le scope `request` dans tous les fichiers services `.yml`.
 
 ### FrontendBundle
-	
+
 The bundle has been removed.
 
-- You must use `bower` to download the css and js packages needed : 
+- You must use `bower` to download the css and js packages needed :
 
  - select2
  - bootstrap3
  - charcounter
  - bootstrap-datepicker
 
-- You must delete the following line from you AppKernel.php : 
+- You must delete the following line from you AppKernel.php :
 
  ```
   new Nuxia\Bundle\FrontendBundle\NuxiaFrontendBundle()
@@ -36,8 +37,8 @@ The bundle has been removed.
  ```
 
 - You must add the following line on your composer.json under the require section :
-  ``` 
-  "nuxia/nuxia-plugin": "2.7.x-dev" 
+  ```
+  "nuxia/nuxia-plugin": "2.7.x-dev"
   ```
 
 - The `flashbag.html.twig` file path has changed. You must edit your twig layout.
@@ -46,10 +47,10 @@ The bundle has been removed.
 ``` twig
    {% include '@NuxiaFrontend//flashbag.html.twig' %}
 ```
-   
- After:   
+
+ After:
 ``` twig
-   {% include '@Nuxia/flashbag.html.twig' %}   
+   {% include '@Nuxia/flashbag.html.twig' %}
 ```
 
 - The `select2-translation.js` file path has changed. You must edit your config.yml.
@@ -58,8 +59,8 @@ The bundle has been removed.
 ``` yml
 - "@NuxiaFrontendBundle/Resources/public/select2/js/select2-translations.js"
 ```
-   
- After:   
+
+ After:
 ``` twig
 - "js/select2-translations.js"
 
@@ -74,12 +75,12 @@ Before:
 ``` php
    public function showAction()
    {
-   	  return $this->redirectToReferer($this->generateUrl('homepage', 
+   	  return $this->redirectToReferer($this->generateUrl('homepage',
    	  	array('_locale'=> 'fr));
    }
 ```
-   
-After:   
+
+After:
 ``` php
    public function showAction()
    {
@@ -96,8 +97,8 @@ Before:
    	  $parameter = $this->request->query->get('parameter');
    }
 ```
-   
-After:   
+
+After:
 ```
    public function showAction(Request $request)
    {
@@ -120,8 +121,8 @@ Before:
    use Nuxia\Component\HttpFoundation\ControllerBagInterface;
    use Nuxia\Component\HttpFoundation\Controller;
 ```
-   
-After:   
+
+After:
 ```
    use Nuxia\Bundle\NuxiaBundle\Controller\ControllerBagInterface;
    use Nuxia\Bundle\NuxiaBundle\Controller\ControllerBag;
@@ -139,7 +140,7 @@ After:
 
 -  La fonction `twig` `join_attribute` a été renommé `concat_attribute` (voir `UPGRADE.md`)
 
-# UPGRADE 2.5 
+# UPGRADE 2.5
 
 #### Parser
 
@@ -151,8 +152,8 @@ Avant:
    		Parser::prefixArray($array, $prefix);
    }
 ```
-   
-Après:   
+
+Après:
 ```
    Parser::prefixArray($array, $prefix);
 ```
@@ -195,8 +196,8 @@ Avant:
    $this->mailer->addMail($mail2);
    $this->mailer->sendMails();
 ```
-   
-Après:   
+
+Après:
 ```
    $this->mailer->sendMail($mail1);
    $this->mailer->sendMail($mail2);
