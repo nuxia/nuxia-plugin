@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -26,7 +27,7 @@ class FilterType extends AbstractType
             array(
                 'csrf_protection' => false,
                 'process_data' => true,
-                'method' => 'GET',
+                'method' => Request::METHOD_GET,
                 'translation_domain' => 'form',
                 'reset_button' => false,
             )
