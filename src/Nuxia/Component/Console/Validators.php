@@ -5,7 +5,7 @@ namespace Nuxia\Component\Console;
 class Validators
 {
     /**
-     * @param  string $input
+     * @param string $input
      *
      * @return string
      *

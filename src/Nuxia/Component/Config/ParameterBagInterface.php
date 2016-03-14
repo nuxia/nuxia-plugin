@@ -87,8 +87,8 @@ interface ParameterBagInterface
      * This method has the same behavior as {@see \Nuxia\Component\Config\ParameterBagInterface::add}.
      * It only adds parameters which haven't been set before .
      *
-     * @param  array     $parameters
-     * @param  bool|null $override
+     * @param array     $parameters
+     * @param bool|null $override
      *
      * @return mixed
      */
@@ -98,7 +98,7 @@ interface ParameterBagInterface
      * Returns the parameters which match with the $keys parameter.
      * Not existing keys are ignored.
      *
-     * @param  array $keys
+     * @param array $keys
      * @return array
      */
     public function filterByKeys(array $keys);

@@ -5,8 +5,8 @@ namespace Nuxia\Component\FileUtils\Exporter;
 interface ExportManagerInterface
 {
     /**
-     * @param  array       $data
-     * @param  string|null $filename
+     * @param array       $data
+     * @param string|null $filename
      *
      * @return StreamedFileResponse
      */

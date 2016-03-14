@@ -22,8 +22,8 @@ class HtmlExtension extends \Twig_Extension
     }
 
     /**
-     * @param  string       $value
-     * @param  string|array $join
+     * @param string       $value
+     * @param string|array $join
      *
      * @return string
      */

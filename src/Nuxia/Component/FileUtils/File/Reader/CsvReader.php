@@ -21,7 +21,7 @@ class CsvReader extends AbstractReader implements CsvReaderInterface
     }
 
     /**
-     * @param  callable $formatter
+     * @param callable $formatter
      *
      * @throws \Nuxia\Component\FileUtils\Exception\FileIteratorMissingException
      */

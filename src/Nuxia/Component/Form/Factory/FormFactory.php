@@ -51,8 +51,8 @@ class FormFactory
     }
 
     /**
-     * @param  mixed|null $data
-     * @param  array      $options
+     * @param mixed|null $data
+     * @param array      $options
      *
      * @return \Symfony\Component\Form\FormInterface
      */

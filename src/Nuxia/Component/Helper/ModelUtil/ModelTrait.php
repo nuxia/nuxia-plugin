@@ -7,8 +7,8 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 trait ModelTrait
 {
     /**
-     * @param  $input
-     * @param  array  $fields
+     * @param $input
+     * @param array  $fields
      *
      * @return object
      */

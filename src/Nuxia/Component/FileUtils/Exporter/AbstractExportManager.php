@@ -8,9 +8,9 @@ use Nuxia\Component\FileUtils\File\FileInterface;
 abstract class AbstractExportManager implements ExportManagerInterface
 {
     /**
-     * @param  FileInterface $file
-     * @param  mixed         $data
-     * @param  bool          $unaccent
+     * @param FileInterface $file
+     * @param mixed         $data
+     * @param bool          $unaccent
      *
      * @return StreamedFileResponse
      *

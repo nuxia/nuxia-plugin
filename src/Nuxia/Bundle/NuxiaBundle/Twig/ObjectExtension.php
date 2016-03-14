@@ -23,8 +23,8 @@ class ObjectExtension extends \Twig_Extension
     }
 
     /**
-     * @param  object $object
-     * @param  string $field
+     * @param object $object
+     * @param string $field
      *
      * @return mixed
      */

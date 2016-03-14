@@ -24,8 +24,8 @@ interface ControllerBagInterface extends ParameterBagInterface
      * Add the parameters existing on the Request attributes bag.
      * This methods is useful on embedded controllers.
      *
-     * @param  Request $request
-     * @param  array   $parameters
+     * @param Request $request
+     * @param array   $parameters
      *
      * @return ControllerBagInterface
      */

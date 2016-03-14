@@ -90,7 +90,7 @@ abstract class AbstractController
     }
 
     /**
-     * @param  array|ControllerBagInterface $controllerBag
+     * @param array|ControllerBagInterface $controllerBag
      *
      * @return ControllerBagInterface
      *
@@ -114,9 +114,9 @@ abstract class AbstractController
      * - 404 if the referrer is null
      * - infinite loop if the referrer and the current uri are the same
      *
-     * @param  Request $request
-     * @param  string  $defaultRoute
-     * @param  array   $defaultParameters
+     * @param Request $request
+     * @param string  $defaultRoute
+     * @param array   $defaultParameters
      *
      * @return array|string
      */
@@ -132,10 +132,10 @@ abstract class AbstractController
     /**
      * Redirects to the previous url
      *
-     * @param  Request $request
-     * @param  string  $defaultRoute
-     * @param  array   $defaultParameters
-     * @param  int     $status
+     * @param Request $request
+     * @param string  $defaultRoute
+     * @param array   $defaultParameters
+     * @param int     $status
      *
      * @return RedirectResponse
      */
@@ -147,10 +147,10 @@ abstract class AbstractController
     /**
      * Forwards the request to another controller.
      *
-     * @param  Request $request    The current request
-     * @param  string  $controller The controller name
-     * @param  array   $path       An array of path parameters
-     * @param  array   $query      An array of query parameters
+     * @param Request $request    The current request
+     * @param string  $controller The controller name
+     * @param array   $path       An array of path parameters
+     * @param array   $query      An array of query parameters
      *
      * @return Response A Response instance
      */
@@ -163,8 +163,8 @@ abstract class AbstractController
     /**
      * Returns a RedirectResponse to the given URL.
      *
-     * @param  string $url    The URL to redirect to
-     * @param  int    $status The status code to use for the Response
+     * @param string $url    The URL to redirect to
+     * @param int    $status The status code to use for the Response
      *
      * @return RedirectResponse
      */
@@ -176,9 +176,9 @@ abstract class AbstractController
     /**
      * Returns a RedirectResponse to the given route with the given parameters.
      *
-     * @param  string $route      The name of the route
-     * @param  array  $parameters An array of parameters
-     * @param  int    $status     The status code to use for the Response
+     * @param string $route      The name of the route
+     * @param array  $parameters An array of parameters
+     * @param int    $status     The status code to use for the Response
      *
      * @return RedirectResponse
      */
@@ -190,8 +190,8 @@ abstract class AbstractController
     /**
      * Adds a flash message to the current session for type.
      *
-     * @param  string $type    The type
-     * @param  string $message The message
+     * @param string $type    The type
+     * @param string $message The message
      *
      * @throws \LogicException
      */
@@ -207,9 +207,9 @@ abstract class AbstractController
     /**
      * Renders a view.
      *
-     * @param  string   $view       The view name
-     * @param  array    $parameters An array of parameters to pass to the view
-     * @param  Response $response   A response instance
+     * @param string   $view       The view name
+     * @param array    $parameters An array of parameters to pass to the view
+     * @param Response $response   A response instance
      *
      * @return Response A Response instance
      */
@@ -225,8 +225,8 @@ abstract class AbstractController
      *
      *     throw $this->createNotFoundException('Page not found!');
      *
-     * @param  string          $message  A message
-     * @param  \Exception|null $previous The previous exception
+     * @param string          $message  A message
+     * @param \Exception|null $previous The previous exception
      *
      * @return NotFoundHttpException
      */
@@ -242,8 +242,8 @@ abstract class AbstractController
      *
      *     throw $this->createAccessDeniedException('Unable to access this page!');
      *
-     * @param  string          $message  A message
-     * @param  \Exception|null $previous The previous exception
+     * @param string          $message  A message
+     * @param \Exception|null $previous The previous exception
      *
      * @return AccessDeniedException
      */

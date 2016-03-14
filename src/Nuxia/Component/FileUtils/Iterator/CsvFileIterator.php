@@ -29,7 +29,7 @@ class CsvFileIterator extends FileIterator
         $this->setFlags(self::READ_CSV);
         $this->setCsvControl($delimiter, $fieldEnclosure, $escapeChar);
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -73,7 +73,7 @@ class CsvFileIterator extends FileIterator
     }
 
     /**
-     * @param  CsvFile $csvFile
+     * @param CsvFile $csvFile
      *
      * @return CsvFileIterator
      */

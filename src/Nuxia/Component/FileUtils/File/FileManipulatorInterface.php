@@ -71,7 +71,7 @@ interface FileManipulatorInterface
     public function close();
 
     /**
-     * @param  string $mode
+     * @param string $mode
      *
      * @return ressource
      *

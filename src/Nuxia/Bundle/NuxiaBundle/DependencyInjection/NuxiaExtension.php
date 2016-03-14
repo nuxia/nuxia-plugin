@@ -37,9 +37,9 @@ class NuxiaExtension extends Extension
     }
 
     /**
-     * @param  array            $config
-     * @param  ContainerBuilder $container
-     * @param   YamlFileLoader   $loader
+     * @param array            $config
+     * @param ContainerBuilder $container
+     * @param YamlFileLoader   $loader
      */
     private function registerSecurityConfiguration(array &$config, ContainerBuilder $container, YamlFileLoader $loader)
     {
@@ -52,8 +52,8 @@ class NuxiaExtension extends Extension
     }
 
     /**
-     * @param  array            $config
-     * @param  ContainerBuilder $container
+     * @param array            $config
+     * @param ContainerBuilder $container
      * @pram   YamlFileLoader   $loader
      */
     private function registerLoginConfiguration(array &$config, ContainerBuilder $container, YamlFileLoader $loader)
@@ -64,8 +64,8 @@ class NuxiaExtension extends Extension
     }
 
     /**
-     * @param  array            $config
-     * @param  ContainerBuilder $container
+     * @param array            $config
+     * @param ContainerBuilder $container
      * @pram   YamlFileLoader   $loader
      */
     private function registerMediaConfiguration(array &$config, ContainerBuilder $container, YamlFileLoader $loader)
@@ -74,8 +74,8 @@ class NuxiaExtension extends Extension
     }
 
     /**
-     * @param  array            $config
-     * @param  ContainerBuilder $container
+     * @param array            $config
+     * @param ContainerBuilder $container
      * @pram   YamlFileLoader   $loader
      */
     private function registerMailerConfiguration(array &$config, ContainerBuilder $container, YamlFileLoader $loader)
@@ -85,8 +85,8 @@ class NuxiaExtension extends Extension
     }
 
     /**
-     * @param  array            $config
-     * @param  ContainerBuilder $container
+     * @param array            $config
+     * @param ContainerBuilder $container
      * @pram   YamlFileLoader   $loader
      */
     private function registerValidatorConfiguration(array &$config, ContainerBuilder $container, YamlFileLoader $loader)

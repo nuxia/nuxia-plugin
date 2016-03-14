@@ -23,7 +23,7 @@ class CaseExtension extends \Twig_Extension
     }
 
     /**
-     * @param  string $text
+     * @param string $text
      *
      * @return string
      */
@@ -33,7 +33,7 @@ class CaseExtension extends \Twig_Extension
     }
 
     /**
-     * @param  string $text
+     * @param string $text
      *
      * @return string
      */

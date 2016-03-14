@@ -186,7 +186,7 @@ class Parser
     }
 
     /**
-     * @param  array $array
+     * @param array $array
      *
      * @return mixed
      */

@@ -104,8 +104,8 @@ class BaseEntityRepository extends DoctrineEntityRepository
     }
 
     /**
-     * @param  string $operator
-     * @param  array  $values
+     * @param string $operator
+     * @param array  $values
      *
      * @return string
      */
