@@ -20,7 +20,6 @@ class NuxiaExtension extends Extension
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services/default.yml');
         $this->registerSecurityConfiguration($config, $container, $loader);
-        $this->registerMediaConfiguration($config, $container, $loader);
         $loader->load('services/doctrine.yml');
         $loader->load('services/form.yml');
         $loader->load('services/twig.yml');
@@ -61,16 +60,6 @@ class NuxiaExtension extends Extension
         if ($config['security']['login']['enabled']) {
             $loader->load('services/login.yml');
         }
-    }
-
-    /**
-     * @param array            $config
-     * @param ContainerBuilder $container
-     * @pram   YamlFileLoader   $loader
-     */
-    private function registerMediaConfiguration(array &$config, ContainerBuilder $container, YamlFileLoader $loader)
-    {
-        $container->setParameter('nuxia.media.thumbnail_path', $config['media']['thumbnail_path']);
     }
 
     /**
