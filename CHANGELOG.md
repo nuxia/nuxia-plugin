@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+### 3.0
+
+- Fixed Symfony 3.1 and 4.0 deprecations
+
 ### 2.8
 
 - NuxiaDynamicMediaBundle has been removed

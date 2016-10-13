@@ -14,13 +14,12 @@ interface ParameterBagInterface
      *
      * @param string $path    The key
      * @param mixed  $default The default value if the parameter key does not exist
-     * @param bool   $deep    If true, a path like foo[bar] will find deeper items
      *
      * @throws \InvalidArgumentException
      *
      * @return mixed
      */
-    public function get($path, $default = null, $deep = false);
+    public function get($path, $default = null);
 
     /**
      * Adds parameters.

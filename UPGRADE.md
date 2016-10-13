@@ -1,3 +1,7 @@
+# UPGRADE 3.0
+
+- The deep parameter doesn't exist anymore in method ParameterBag::get. You should store the result in an array instead
+
 # UPGRADE 2.8
 
 - NuxiaDynamicMediaBundle has been removed. If you need it add nuxia/dynamic-media-bundle on your project composer
