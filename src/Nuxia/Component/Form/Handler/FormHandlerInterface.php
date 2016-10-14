@@ -10,4 +10,9 @@ interface FormHandlerInterface
      * @return FormInterface
      */
     public function getForm();
+
+    /**
+     * @return bool
+     */
+    public function isFormValid();
 }

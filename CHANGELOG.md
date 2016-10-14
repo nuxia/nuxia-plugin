@@ -4,6 +4,8 @@ CHANGELOG
 ### 3.0
 
 - Fixed Symfony 3.1 and 4.0 deprecations
+- FormHandler:handleRequest has been simplified (see UPGRADE.md)
+- FormHandler:isFormValid method helper has been added
 
 ### 2.8
 

@@ -1,6 +1,7 @@
 # UPGRADE 3.0
 
 - The deep parameter doesn't exist anymore in method ParameterBag::get. You should store the result in an array instead
+- FormHandler::handlePostRequest and FormHandler::handleGetRequest methods has been deleted. Use handleRequest instead 
 
 # UPGRADE 2.8
 

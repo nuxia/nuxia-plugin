@@ -62,8 +62,8 @@ abstract class AbstractFormHandler
     }
 
     /**
-     * @param null  $data
-     * @param array $options
+     * @param mixed|null $data
+     * @param array      $options
      */
     protected function initForm($data = null, array $options = [])
     {
@@ -71,45 +71,29 @@ abstract class AbstractFormHandler
     }
 
     /**
-     * @return mixed
-     */
-    protected function handleGetRequest()
-    {
-        return $this->handleRequest('GET');
-    }
-
-    /**
-     * @return mixed
-     */
-    protected function handlePostRequest()
-    {
-        return $this->handleRequest('POST');
-    }
-
-    /**
-     * @param string $method
-     *
-     * @DEPRECATED Utiliser handle(Post|Get)Request à la place
-     * @REFACTOR Passer en private et enlever le défault (POST)
-     *
      * @return bool
      */
-    protected function handleRequest($method = 'POST')
+    protected function handleRequest()
     {
-        $requestBag = $method === 'GET' ? $this->request->query : $this->request->request;
-        //@REWORK Refactoring Johnatan => FormFilterHandler à l'extérieur des FormHandler
-        $form = $method === 'GET' && $this->form === null ? $this->formFilter : $this->form;
+        $this->form->handleRequest($this->request);
 
-        $form->handleRequest($this->request);
-
-        return $form->isValid();
+        return $this->isFormValid();
     }
 
     /**
-     * @return FormInterface
+     * {@inheritdoc}
      */
     public function getForm()
     {
         return $this->form;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isFormValid()
+    {
+        return $this->form->isSubmitted() && $this->form->isValid();
+    }
+
 }
