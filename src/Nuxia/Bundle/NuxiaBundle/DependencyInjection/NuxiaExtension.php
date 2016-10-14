@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 class NuxiaExtension extends Extension
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -70,7 +70,7 @@ class NuxiaExtension extends Extension
     private function registerMailerConfiguration(array &$config, ContainerBuilder $container, YamlFileLoader $loader)
     {
         $from = $config['mailer']['from'];
-        $container->setParameter('mailer.from', array($from['email'] => $from['name']));
+        $container->setParameter('mailer.from', [$from['email'] => $from['name']]);
     }
 
     /**

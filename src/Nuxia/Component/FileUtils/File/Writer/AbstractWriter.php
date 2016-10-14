@@ -15,7 +15,7 @@ abstract class AbstractWriter implements WriterInterface
     /**
      * @var array
      */
-    protected $content = array();
+    protected $content = [];
 
     /**
      * @param FileInterface $file
@@ -26,9 +26,9 @@ abstract class AbstractWriter implements WriterInterface
     }
 
     /**
-     * @return FileInterface
-     *
      * @throws \RuntimeException
+     *
+     * @return FileInterface
      */
     public function getFile()
     {
@@ -44,7 +44,7 @@ abstract class AbstractWriter implements WriterInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function count()
     {
@@ -59,8 +59,7 @@ abstract class AbstractWriter implements WriterInterface
         if (!is_resource($this->file->getFilePointer())) {
             $mode = $append ?
                 FileManipulatorInterface::BOTTOM_TO_TOP_READ_ONLY :
-                FileManipulatorInterface::TOP_TO_BOTTOM_READ_ONLY_OR_CREATE
-            ;
+                FileManipulatorInterface::TOP_TO_BOTTOM_READ_ONLY_OR_CREATE;
             $this->file->open($mode);
         }
     }

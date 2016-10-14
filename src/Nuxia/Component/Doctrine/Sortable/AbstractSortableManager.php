@@ -24,8 +24,10 @@ abstract class AbstractSortableManager extends AbstractEntityManager
             $sibling->setOrder($old);
             $this->em->persist($sibling);
             $this->em->flush();
+
             return true;
         }
+
         return false;
     }
 
@@ -34,6 +36,7 @@ abstract class AbstractSortableManager extends AbstractEntityManager
         if ($doMove === true) {
             return 'success';
         }
+
         return 'danger';
     }
 }

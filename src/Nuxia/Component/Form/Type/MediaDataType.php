@@ -10,23 +10,23 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class MediaDataType extends AbstractType
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
+            [
                 'compound' => false,
                 'mapped' => false,
                 'required' => false,
                 //@SYMFONY 2.3 Sera possible avec l'option auto_initialize à false
                 //'data_class' => 'Nuxia\Component\Media\AbstractMedia',
-            )
+            ]
         );
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {

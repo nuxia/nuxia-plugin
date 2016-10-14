@@ -6,12 +6,12 @@ class ResourceHelper
 {
     private function __construct()
     {
-
     }
     //@TODO nom a revoir
     public static function getBundleClass($namespace)
     {
         $buffer = explode('\\', $namespace);
+
         return $buffer[0] . '\\' . $buffer[1] . '\\' . $buffer[0] . $buffer[1];
     }
 

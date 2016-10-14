@@ -2,8 +2,8 @@
 
 namespace Nuxia\Bundle\NuxiaBundle\Controller;
 
-use Symfony\Component\Form\Form;
 use Nuxia\Component\Config\ParameterBag;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -14,22 +14,23 @@ use Symfony\Component\HttpFoundation\Request;
 class ControllerBag extends ParameterBag implements ControllerBagInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getTemplateVars()
     {
-        $this->parameters['_template_vars'] = array();
+        $this->parameters['_template_vars'] = [];
         foreach ($this->parameters as $key => $value) {
             if (is_object($value) && $value instanceof Form) {
                 $value = $value->createView();
             }
             $this->parameters['_template_vars'][$key] = $value;
         }
+
         return $this->parameters['_template_vars'];
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function addFromRequestAttributes(Request $request, array $parameters)
     {

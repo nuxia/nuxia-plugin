@@ -19,34 +19,34 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class FilterType extends AbstractType
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
+            [
                 'csrf_protection' => false,
                 'process_data' => true,
                 'method' => Request::METHOD_GET,
                 'translation_domain' => 'form',
                 'reset_button' => false,
-            )
+            ]
         );
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, array($this, 'addActionFields'));
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, [$this, 'addActionFields']);
         if ($options['process_data'] === true) {
-            $builder->addEventListener(FormEvents::SUBMIT, array($this, 'processData'));
+            $builder->addEventListener(FormEvents::SUBMIT, [$this, 'processData']);
         }
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
@@ -55,7 +55,7 @@ class FilterType extends AbstractType
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
@@ -88,7 +88,7 @@ class FilterType extends AbstractType
         $data = array_filter($event->getData());
 
         foreach ($data as $child => $value) {
-            if(!$form->has($child)){
+            if (!$form->has($child)) {
                 continue;
             }
 

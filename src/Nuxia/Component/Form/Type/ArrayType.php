@@ -23,16 +23,16 @@ class ArrayType extends AbstractType
     protected $parsedConstraints;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired('fields');
-        $resolver->setDefaults(array('constraint_messages' => array(), 'root_view' => array()));
+        $resolver->setDefaults(['constraint_messages' => [], 'root_view' => []]);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -62,10 +62,10 @@ class ArrayType extends AbstractType
      */
     private function addConstraints(array &$fieldOptions, array $constraints, array $defaultMessages)
     {
-        $fieldOptions['constraints'] = array();
+        $fieldOptions['constraints'] = [];
         $defaultMessages = $this->parseConstraintsArray($defaultMessages);
         foreach ($constraints as $constraint => $options) {
-            $class = (strpos($constraint, '\\') === false ? ArrayType::CONSTRAINTS_LOCATION . '\\' : '') . $constraint;
+            $class = (strpos($constraint, '\\') === false ? self::CONSTRAINTS_LOCATION . '\\' : '') . $constraint;
             $options = array_merge($this->getArrayFromKey($defaultMessages, $constraint), $options);
             $fieldOptions['constraints'][] = new $class($options);
         }
@@ -78,16 +78,16 @@ class ArrayType extends AbstractType
     private function addViewOptionsFromConstraint(array &$viewOptions, $constraints)
     {
         if (array_key_exists('Range', $constraints)) {
-            $attr = isset($viewOptions['attr']) ? $viewOptions['attr'] : array();
+            $attr = isset($viewOptions['attr']) ? $viewOptions['attr'] : [];
             $viewOptions['attr'] = array_merge(
                 $attr,
-                Parser::filterArrayByKeys($constraints['Range'], array('min', 'max'))
+                Parser::filterArrayByKeys($constraints['Range'], ['min', 'max'])
             );
         }
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
@@ -111,7 +111,7 @@ class ArrayType extends AbstractType
      */
     private function getArrayFromKey(array $array, $key)
     {
-        return isset($array[$key]) ? $array[$key] : array();
+        return isset($array[$key]) ? $array[$key] : [];
     }
 
     /**
@@ -123,17 +123,18 @@ class ArrayType extends AbstractType
     {
         foreach ($constraints as $constraint => $options) {
             if (!is_string($constraint)) {
-                $constraints[$options] = array();
+                $constraints[$options] = [];
                 unset($constraints[$constraint]);
             } elseif (!is_array($options)) {
-                $constraints[$constraint] = array('message' => $options);
+                $constraints[$constraint] = ['message' => $options];
             }
         }
+
         return $constraints;
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getParent()
     {

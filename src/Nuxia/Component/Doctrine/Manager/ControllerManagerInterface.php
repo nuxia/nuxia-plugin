@@ -11,7 +11,7 @@ interface ControllerManagerInterface
      *
      * @return mixed
      */
-    public function getPaginatorTarget(array $criteria, $type = 'list', array $parameters = array());
+    public function getPaginatorTarget(array $criteria, $type = 'list', array $parameters = []);
 
     /**
      * @param array  $criteria
@@ -20,5 +20,5 @@ interface ControllerManagerInterface
      *
      * @return mixed
      */
-    public function getControllerObject(array $criteria, $type = 'default', array $parameters = array());
+    public function getControllerObject(array $criteria, $type = 'default', array $parameters = []);
 }

@@ -6,7 +6,6 @@ class DateManipulator
 {
     private function __construct()
     {
-
     }
 
     //@TODO nom a revoir
@@ -18,12 +17,10 @@ class DateManipulator
      */
     public static function toFilter(\Datetime $startedAt, \Datetime $endedAt)
     {
-        return array(
+        return [
             'operator' => 'between',
             'start' => $startedAt->setTime(0, 0, 0),
-            'end' => $endedAt->setTime(23, 59, 59)
-        );
+            'end' => $endedAt->setTime(23, 59, 59),
+        ];
     }
-
-
 }

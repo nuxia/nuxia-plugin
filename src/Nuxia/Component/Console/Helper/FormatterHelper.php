@@ -10,10 +10,10 @@ class FormatterHelper extends SymfonyFormatterHelper
 {
     public function writeSummary(OutputInterface $output, $text, $style = 'bg=blue;fg=white')
     {
-        $output->writeln(array(
+        $output->writeln([
             '',
             $this->formatBlock($text, $style, true),
             '',
-        ));
+        ]);
     }
 }

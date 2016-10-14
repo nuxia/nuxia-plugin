@@ -33,7 +33,9 @@
         "symfony/validator": "^2.8|^3.0",
         "symfony/yaml": "^2.8|^3.0"
     },
-    "require-dev": {},
+    "require-dev": {
+        "fabpot/php-cs-fixer": "^1.12"
+    },
     "autoload": {
         "psr-4": {
             "Nuxia\\Bundle\\": "src/Nuxia/Bundle/",

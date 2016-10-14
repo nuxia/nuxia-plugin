@@ -15,12 +15,12 @@ use Symfony\Component\PropertyAccess\PropertyPathInterface;
  *
  * @author Yannick Snobbert <yannick.snobbert@gmail.com>
  */
-trait JsonParametersTrait {
-
+trait JsonParametersTrait
+{
     /**
      * @var array
      */
-    protected $parameters = array();
+    protected $parameters = [];
 
     /**
      * @return array
@@ -39,7 +39,7 @@ trait JsonParametersTrait {
     }
 
     /**
-     * @param string|PropertyPathInterface $propertyPath  The property path to modify
+     * @param string|PropertyPathInterface $propertyPath The property path to modify
      * @param mixed                        $value
      */
     public function setParameter($propertyPath, $value)
@@ -49,8 +49,8 @@ trait JsonParametersTrait {
     }
 
     /**
-     * @param string|PropertyPathInterface $propertyPath  The property path to modify
-     * @param mixed|null                   $default       The default value if the parameter does not exist
+     * @param string|PropertyPathInterface $propertyPath The property path to modify
+     * @param mixed|null                   $default      The default value if the parameter does not exist
      *
      * @return mixed
      */
@@ -66,8 +66,8 @@ trait JsonParametersTrait {
     }
 
     /**
-     * @param string|PropertyPathInterface $propertyPath  The property path to modify
-     * @param mixed|false                  $default       The default value if the parameter does not exist
+     * @param string|PropertyPathInterface $propertyPath The property path to modify
+     * @param mixed|false                  $default      The default value if the parameter does not exist
      *
      * @return bool
      */
@@ -77,7 +77,7 @@ trait JsonParametersTrait {
     }
 
     /**
-     * @param string|PropertyPathInterface $propertyPath  The property path to modify
+     * @param string|PropertyPathInterface $propertyPath The property path to modify
      *
      * @throws NoSuchIndexException
      */

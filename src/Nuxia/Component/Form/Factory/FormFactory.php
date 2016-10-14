@@ -27,7 +27,7 @@ class FormFactory
      * @param string|FormTypeInterface $type
      * @param array                    $options
      */
-    public function __construct(FormFactoryInterface $formFactory, $type, array $options = array())
+    public function __construct(FormFactoryInterface $formFactory, $type, array $options = [])
     {
         $this->formFactory = $formFactory;
         $this->type = $type;
@@ -56,11 +56,12 @@ class FormFactory
      *
      * @return \Symfony\Component\Form\FormInterface
      */
-    public function createForm($data = null, array $options = array())
+    public function createForm($data = null, array $options = [])
     {
         if ($data != null) {
             $this->setData($data);
         }
+
         return $this->formFactory->create($this->type, null, array_merge($this->options, $options));
     }
 }

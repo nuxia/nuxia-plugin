@@ -11,7 +11,7 @@ class SortableListener implements EventSubscriber
 {
     public function getSubscribedEvents()
     {
-        return array(Events::prePersist);
+        return [Events::prePersist];
     }
 
     public function prePersist(LifecycleEventArgs $eventArgs)

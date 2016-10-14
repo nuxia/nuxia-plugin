@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\ParameterBag as SymfonyParameterBag;
 class ParameterBag extends SymfonyParameterBag implements ParameterBagInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setIfNotSet($key, $value)
     {
@@ -22,9 +22,9 @@ class ParameterBag extends SymfonyParameterBag implements ParameterBagInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
-    public function addIfNotSet(array $parameters = array())
+    public function addIfNotSet(array $parameters = [])
     {
         foreach ($parameters as $key => $value) {
             $this->setIfNotSet($key, $value);
@@ -32,11 +32,11 @@ class ParameterBag extends SymfonyParameterBag implements ParameterBagInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function filterByKeys(array $keys)
     {
-        $return = array();
+        $return = [];
 
         foreach ($keys as $key) {
             if ($this->has($key)) {

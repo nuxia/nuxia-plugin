@@ -16,9 +16,9 @@ class CsvWriter extends AbstractWriter
     }
 
     /**
-     * @return CsvFile
-     *
      * @throws \RuntimeException
+     *
+     * @return CsvFile
      */
     public function getFile()
     {
@@ -30,7 +30,7 @@ class CsvWriter extends AbstractWriter
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setColumnsNames(array $columnsNames)
     {
@@ -41,7 +41,7 @@ class CsvWriter extends AbstractWriter
      * @param array $content
      * @param array $columnsNames
      */
-    public function appendContent(array $content, array $columnsNames = array())
+    public function appendContent(array $content, array $columnsNames = [])
     {
         //@TODO considerer l'ordre d'écriture pour bien remplir le content
         if (!is_resource($this->getFile()->getFilePointer())) {
@@ -53,7 +53,7 @@ class CsvWriter extends AbstractWriter
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function write($content, $append = false)
     {

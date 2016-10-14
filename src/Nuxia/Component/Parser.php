@@ -37,7 +37,7 @@ class Parser
      */
     public static function getValuelist($bundle, $file, $path)
     {
-        return Parser::parseYaml($bundle, 'Resources/config/valuelist/' . $file . '.yml', $path);
+        return self::parseYaml($bundle, 'Resources/config/valuelist/' . $file . '.yml', $path);
     }
 
     /**
@@ -48,6 +48,7 @@ class Parser
     public static function getBundleClass($namespace)
     {
         $buffer = explode('\\', $namespace);
+
         return $buffer[0] . '\\' . $buffer[1] . '\\' . $buffer[0] . $buffer[1];
     }
 
@@ -61,11 +62,14 @@ class Parser
     public static function prefixArray(array $array, $prefix = null, $type = 'ARRAY_ASSOC')
     {
         if ($prefix !== null) {
-            $callback = function ($v) use ($prefix) { return $prefix . '.' . $v; };
+            $callback = function ($v) use ($prefix) {
+                return $prefix . '.' . $v;
+            };
             $prefixedArray = array_map($callback, array_values($array));
             switch ($type) {
                 case 'ARRAY_ASSOC':
-                    $keys = Parser::isAssociativeArray($array) ? array_keys($array) : $array;
+                    $keys = self::isAssociativeArray($array) ? array_keys($array) : $array;
+
                     return array_combine($keys, $prefixedArray);
                     break;
                 default:
@@ -77,7 +81,6 @@ class Parser
         }
 
         return $array;
-
     }
 
     /**
@@ -87,7 +90,7 @@ class Parser
      */
     public static function isAssociativeArray(array $array)
     {
-        return (is_array($array) && count(array_filter(array_keys($array), 'is_string')) == count($array));
+        return is_array($array) && count(array_filter(array_keys($array), 'is_string')) == count($array);
     }
 
     /**
@@ -101,7 +104,7 @@ class Parser
         switch ($type) {
             case 'all':
                 $callback = function ($v) {
-                    return !($v === null || $v === '' || $v === array());
+                    return !($v === null || $v === '' || $v === []);
                 };
                 break;
             default:
@@ -111,7 +114,7 @@ class Parser
         }
         foreach ($array as &$value) {
             if (is_array($value)) {
-                $value = Parser::cleanArray($value);
+                $value = self::cleanArray($value);
             }
         }
 
@@ -162,11 +165,11 @@ class Parser
     {
         $value = $object;
         foreach (explode($pathSeparator, $path) as $segment) {
-            $method = 'get' . Parser::camelize($segment);
+            $method = 'get' . self::camelize($segment);
             if (method_exists($value, $method)) {
                 $value = $value->$method();
             } else {
-                return null;
+                return;
             }
         }
 
@@ -182,7 +185,7 @@ class Parser
     {
         $date = $datetime->format('Y/m/d');
 
-        return array('operator' => 'between', 'start' => $date . ' 00:00', 'end' => $date . ' 23:59');
+        return ['operator' => 'between', 'start' => $date . ' 00:00', 'end' => $date . ' 23:59'];
     }
 
     /**

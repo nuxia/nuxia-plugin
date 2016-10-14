@@ -11,4 +11,4 @@ class FileNotFoundException extends FileException
     {
         parent::__construct(sprintf('The file "%s" does not exist', $path));
     }
-} 
+}

@@ -3,9 +3,9 @@
 namespace Nuxia\Bundle\NuxiaBundle;
 
 use Nuxia\Bundle\NuxiaBundle\DependencyInjection\Compiler\EventDispatcherAwarePass;
+use Nuxia\Bundle\NuxiaBundle\DependencyInjection\Compiler\FlashBagPass;
 use Nuxia\Bundle\NuxiaBundle\DependencyInjection\Compiler\FormPass;
 use Nuxia\Bundle\NuxiaBundle\DependencyInjection\Compiler\SecurityCompilerPass;
-use Nuxia\Bundle\NuxiaBundle\DependencyInjection\Compiler\FlashBagPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

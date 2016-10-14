@@ -11,26 +11,26 @@ namespace Nuxia\Bundle\NuxiaBundle\Twig;
 class DatetimeExtension extends \Twig_Extension
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('houralize', array($this, 'houralize')),
-        );
+        return [
+            new \Twig_SimpleFilter('houralize', [$this, 'houralize']),
+        ];
     }
 
     /**
      * @param $minute
+     *
      * @return string
      */
     public function houralize($minute)
     {
-
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getName()
     {

@@ -35,9 +35,9 @@ abstract class AbstractReader
     }
 
     /**
-     * @return null|\Traversable
-     *
      * @throws \RuntimeException
+     *
+     * @return null|\Traversable
      */
     public function getIterator()
     {

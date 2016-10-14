@@ -19,8 +19,7 @@ class StatusValidator extends ConstraintValidator
                 if (!$value->$getter()) {
                     $this->context->buildViolation($this->getConstraintMessage($value, $field, $constraint))
                         ->atPath($field)
-                        ->addViolation()
-                    ;
+                        ->addViolation();
                 }
             }
         }
@@ -38,6 +37,7 @@ class StatusValidator extends ConstraintValidator
         if ($constraint->message !== null) {
             return $constraint->message;
         }
+
         return $value->getModelname() . '.' . $field . '.required.' . $constraint->status;
     }
 }

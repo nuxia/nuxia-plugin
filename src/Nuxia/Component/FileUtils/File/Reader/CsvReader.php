@@ -37,7 +37,7 @@ class CsvReader extends AbstractReader implements CsvReaderInterface
             };
         }
 
-        $buffer = array();
+        $buffer = [];
 
         foreach ($this->getIterator()->current() as $element) {
             $buffer[] = $formatter($element);

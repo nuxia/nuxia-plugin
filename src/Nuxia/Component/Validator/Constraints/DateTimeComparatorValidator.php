@@ -25,7 +25,7 @@ class DateTimeComparatorValidator extends ConstraintValidator
         }
         $fieldValue = $this->getDatetimeValue($value, $constraint->field);
         $comparedFieldValue = $this->getDatetimeValue($value, $constraint->comparedField);
-        $messageParameters = array('%' . $constraint->type . '%' => $comparedFieldValue->format($constraint->format));
+        $messageParameters = ['%' . $constraint->type . '%' => $comparedFieldValue->format($constraint->format)];
         switch ($constraint->type) {
             case 'after':
                 if ($fieldValue < $comparedFieldValue) {

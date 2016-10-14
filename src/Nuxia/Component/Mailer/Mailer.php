@@ -32,7 +32,7 @@ class Mailer
      * @param \Twig_Environment $twig
      * @param array             $parameters
      */
-    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, array $parameters = array())
+    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, array $parameters = [])
     {
         $this->mailer = $mailer;
         $this->twig = $twig;
@@ -46,7 +46,7 @@ class Mailer
      *
      * @return Mail
      */
-    public function createMail($addresses, $template = null, array $templateParameters = array())
+    public function createMail($addresses, $template = null, array $templateParameters = [])
     {
         $templateOptions = $this->parseTemplateOptions($template, $templateParameters);
 
@@ -73,28 +73,29 @@ class Mailer
      *
      * @return array
      */
-    private function parseTemplateOptions($template = null, array $templateParameters)
+    private function parseTemplateOptions($template, array $templateParameters)
     {
         if (!array_key_exists('language', $templateParameters) && $this->parameters->has('language')) {
             $templateParameters['language'] = $this->parameters->get('language');
         }
 
-        return array(
+        return [
             'template' => $template === null ? $this->parameters->get('template') : $template,
             'parameters' => new ParameterBag($templateParameters),
-        );
+        ];
     }
 
     /**
      * @param string|array $addresses
      *
-     * @return array
      * @throws \Exception
+     *
+     * @return array
      */
     private function parseAddresses($addresses)
     {
         if (!is_array($addresses)) {
-            $addresses = array('to' => $addresses);
+            $addresses = ['to' => $addresses];
         }
         if (!isset($addresses['to'])) {
             throw new \Exception('You must define a recipient with "to" key');
@@ -102,6 +103,7 @@ class Mailer
         if (!isset($addresses['from'])) {
             $addresses['from'] = $this->parameters->get('from');
         }
+
         return $addresses;
     }
 

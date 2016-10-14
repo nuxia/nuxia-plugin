@@ -20,6 +20,6 @@ class SecurityCompilerPass implements CompilerPassInterface
         $securityExtension = $container->getDefinition('twig.extension.security');
         $securityExtension->setClass('Nuxia\Bundle\NuxiaBundle\Twig\SecurityExtension');
         $securityExtension->addArgument(new Reference('nuxia.security.manager'));
-        $securityExtension->addMethodCall('setSecurityManager', array(new Reference('nuxia.security.manager')));
+        $securityExtension->addMethodCall('setSecurityManager', [new Reference('nuxia.security.manager')]);
     }
 }

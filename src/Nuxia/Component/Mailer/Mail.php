@@ -25,7 +25,7 @@ class Mail
      * @param array $addresses
      * @param array $templateOptions
      */
-    public function __construct(array $addresses = array(), array $templateOptions = array())
+    public function __construct(array $addresses = [], array $templateOptions = [])
     {
         $this->addresses = new ParameterBag($addresses);
         $this->templateOptions = new ParameterBag($templateOptions);
@@ -58,7 +58,8 @@ class Mail
         if ($this->templateOptions->has('parameters')) {
             return $this->templateOptions->get('parameters')->all();
         }
-        return array();
+
+        return [];
     }
 
     /**
@@ -68,7 +69,7 @@ class Mail
      *
      * @throws \Exception
      */
-    public function addLink($route, array $parameters = array(), $name = null)
+    public function addLink($route, array $parameters = [], $name = null)
     {
         if ($this->mailer->getRouter() === null) {
             throw new \Exception('Router must be set to add link');
@@ -83,7 +84,7 @@ class Mail
     /**
      * @param array $parameters
      */
-    public function addTemplateParameters(array $parameters = array())
+    public function addTemplateParameters(array $parameters = [])
     {
         $this->templateOptions->get('parameters')->add($parameters);
     }

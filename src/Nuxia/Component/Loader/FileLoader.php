@@ -16,6 +16,7 @@ class FileLoader
     {
         $bundleclass = Parser::getBundleClass($bundle);
         $reflection = new \ReflectionClass($bundleclass);
+
         return dirname($reflection->getFileName()) . '/' . $filepath;
     }
 
@@ -27,6 +28,6 @@ class FileLoader
      */
     public static function getFileContents($bundle, $filepath)
     {
-        return file_get_contents(FileLoader::getFilePath($bundle, $filepath));
+        return file_get_contents(self::getFilePath($bundle, $filepath));
     }
 }

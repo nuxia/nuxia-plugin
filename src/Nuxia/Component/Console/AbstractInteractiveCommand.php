@@ -19,6 +19,7 @@ abstract class AbstractInteractiveCommand extends AbstractCommand
     /**
      * @param $question
      * @param null $default
+     *
      * @return Question
      */
     public function createQuestion($question, $default = null)
@@ -27,6 +28,7 @@ abstract class AbstractInteractiveCommand extends AbstractCommand
         if ($default !== null) {
             $question .= sprintf(self::DEFAULT_QUESTION_FORMAT, $default);
         }
+
         return new Question($question, $default);
     }
 }

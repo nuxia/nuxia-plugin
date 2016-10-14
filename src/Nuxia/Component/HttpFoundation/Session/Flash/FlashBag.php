@@ -9,7 +9,7 @@ class FlashBag extends SymfonyFlashBag
     /**
      * {@inheritdoc}
      */
-    public function add($type, $message, array $translationParameters = array())
+    public function add($type, $message, array $translationParameters = [])
     {
         parent::add($type, $this->parseMessage($message, true, $translationParameters));
     }
@@ -19,7 +19,7 @@ class FlashBag extends SymfonyFlashBag
      * @param string $message
      * @param array  $translationParameters
      */
-    public function addStatic($type, $message, array $translationParameters = array())
+    public function addStatic($type, $message, array $translationParameters = [])
     {
         parent::add($type, $this->parseMessage($message, false, $translationParameters));
     }
@@ -31,12 +31,12 @@ class FlashBag extends SymfonyFlashBag
      *
      * @return array
      */
-    private function parseMessage($message, $autoClose, array $translationParameters = array())
+    private function parseMessage($message, $autoClose, array $translationParameters = [])
     {
-        return array(
+        return [
             'message' => $message,
             'autoclose' => $autoClose,
-            'translation_parameters' => $translationParameters
-        );
+            'translation_parameters' => $translationParameters,
+        ];
     }
 }

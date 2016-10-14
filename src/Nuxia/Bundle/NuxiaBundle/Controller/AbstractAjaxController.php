@@ -2,7 +2,6 @@
 
 namespace Nuxia\Bundle\NuxiaBundle\Controller;
 
-use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 

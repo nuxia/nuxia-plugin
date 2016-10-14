@@ -4,21 +4,13 @@
  * @DEPRECATED : This class will be deleted on @NUXIA 3.0
  * Urlize and unaccent will be replaced by https://github.com/Behat/Transliterator
  * Camelize and underscore will be replaced by https://github.com/Doctrine|Inflector
-namespace Nuxia\Component\Helper\StringUtil;
-
-use Gedmo\Sluggable\Util\Urlizer;
-use Symfony\Component\DependencyInjection\Container;
-
-/**
- * This class provides helper method for common string transformations
  *
  * @author Yannick Snobbert <yannick.snobbert@gmail.com>
-**/
+ **/
 class StringHelper
 {
     private function __construct()
     {
-
     }
 
     public static function camelize($string)

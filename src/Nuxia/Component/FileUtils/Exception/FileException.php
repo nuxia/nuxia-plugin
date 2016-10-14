@@ -6,5 +6,4 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException as SymfonyFile
 
 class FileException extends SymfonyFileException
 {
-
-} 
+}

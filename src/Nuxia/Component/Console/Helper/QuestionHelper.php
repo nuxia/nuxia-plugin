@@ -3,8 +3,6 @@
 namespace Nuxia\Component\Console\Helper;
 
 use Symfony\Component\Console\Helper\QuestionHelper as SymfonyQuestionHelper;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 
 //@DEPRECATED : Utiliser AbstractInteractiveCommand
@@ -16,6 +14,7 @@ class QuestionHelper extends SymfonyQuestionHelper
     /**
      * @param $question
      * @param null $default
+     *
      * @return Question
      */
     public function createQuestion($question, $default = null)
@@ -24,6 +23,7 @@ class QuestionHelper extends SymfonyQuestionHelper
         if ($default !== null) {
             $question .= sprintf(self::DEFAULT_FORMAT, $default);
         }
+
         return new Question($question, $default);
     }
 }

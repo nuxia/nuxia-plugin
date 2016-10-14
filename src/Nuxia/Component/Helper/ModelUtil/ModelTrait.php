@@ -8,11 +8,11 @@ trait ModelTrait
 {
     /**
      * @param $input
-     * @param array  $fields
+     * @param array $fields
      *
      * @return object
      */
-    public function fromArrayOrObject($input, array $fields = array())
+    public function fromArrayOrObject($input, array $fields = [])
     {
         $accessor = PropertyAccess::createPropertyAccessor();
         $isArray = is_array($input);
@@ -35,10 +35,11 @@ trait ModelTrait
     public function toArray(array $fields)
     {
         $accessor = PropertyAccess::createPropertyAccessor();
-        $array = array();
+        $array = [];
         foreach ($fields as $field) {
             $array[$field] = $accessor->getValue($this, $field);
         }
+
         return $array;
     }
 }

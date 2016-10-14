@@ -26,11 +26,12 @@ class StreamedFileResponse extends StreamedResponse
      */
     public function writeContent(FileInterface $file, $content)
     {
-        $this->setCallback(function() use ($file, $content) {
+        $this->setCallback(function () use ($file, $content) {
             foreach ($content as $row) {
                 $file->getWriter()->write($row);
             }
         });
+
         return $this;
     }
 
@@ -39,11 +40,11 @@ class StreamedFileResponse extends StreamedResponse
      */
     private function buildHeaders($filename)
     {
-        $this->headers->add(array(
-            'Content-Type' =>  'application/force-download',
+        $this->headers->add([
+            'Content-Type' => 'application/force-download',
             'Content-Disposition' => $this->headers->makeDisposition(
                 ResponseHeaderBag::DISPOSITION_ATTACHMENT, $filename
             ),
-        ));
+        ]);
     }
 }

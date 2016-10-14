@@ -23,7 +23,7 @@ class CsvFileIterator extends FileIterator
      * @param string $fieldEnclosure
      * @param string $escapeChar
      */
-    public function __construct($path, $delimiter = ';', $fieldEnclosure = "\"", $escapeChar = '\\')
+    public function __construct($path, $delimiter = ';', $fieldEnclosure = '"', $escapeChar = '\\')
     {
         parent::__construct($path, FileManipulatorInterface::TOP_TO_BOTTOM_READ_ONLY);
         $this->setFlags(self::READ_CSV);
@@ -31,7 +31,7 @@ class CsvFileIterator extends FileIterator
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setColumnNames(array $names)
     {
@@ -39,7 +39,7 @@ class CsvFileIterator extends FileIterator
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function current()
     {
@@ -49,7 +49,7 @@ class CsvFileIterator extends FileIterator
         }
         if ($this->names) {
             if (count($row) != count($this->names)) {
-                return null;
+                return;
             } else {
                 $row = array_combine($this->names, $row);
             }
@@ -59,7 +59,7 @@ class CsvFileIterator extends FileIterator
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function valid()
     {
@@ -79,7 +79,7 @@ class CsvFileIterator extends FileIterator
      */
     public static function createFromFile(CsvFile $csvFile)
     {
-        return new CsvFileIterator($csvFile->getPath(), $csvFile->getFieldDelimiter(), $csvFile->getFieldEnclosure());
+        return new self($csvFile->getPath(), $csvFile->getFieldDelimiter(), $csvFile->getFieldEnclosure());
     }
 
     /**
@@ -88,6 +88,7 @@ class CsvFileIterator extends FileIterator
     public function ignoreFirstLine()
     {
         $this->ignoreFirstLine = true;
+
         return $this;
     }
 }

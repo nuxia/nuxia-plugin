@@ -19,11 +19,13 @@ abstract class AbstractCommand extends SymfonyCommand
     //@REWORK a supprimer les helpers sont directement ici à présent?
     /**
      * @param Helper $helper
+     *
      * @return Helper
      */
     protected function addHelper(HelperInterface $helper)
     {
         $this->getHelperSet()->set($helper);
+
         return $helper;
     }
 
@@ -43,10 +45,10 @@ abstract class AbstractCommand extends SymfonyCommand
      */
     protected function writeSummary(OutputInterface $output, $text, $style = 'bg=blue;fg=white')
     {
-        $output->writeln(array(
+        $output->writeln([
             '',
             $this->getHelperSet()->get('formatter')->formatBlock($text, $style, true),
             '',
-        ));
+        ]);
     }
 }

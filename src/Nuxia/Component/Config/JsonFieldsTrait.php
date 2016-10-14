@@ -15,12 +15,12 @@ use Symfony\Component\PropertyAccess\PropertyPathInterface;
  *
  * @author Yannick Snobbert <yannick.snobbert@gmail.com>
  */
-trait JsonFieldsTrait {
-
+trait JsonFieldsTrait
+{
     /**
      * @var array
      */
-    protected $fields = array();
+    protected $fields = [];
 
     /**
      * @return array
@@ -39,8 +39,7 @@ trait JsonFieldsTrait {
     }
 
     /**
-     *
-     * @param string|PropertyPathInterface $propertyPath  The property path to modify
+     * @param string|PropertyPathInterface $propertyPath The property path to modify
      * @param mixed                        $value
      *
      * @throws NoSuchIndexException
@@ -52,12 +51,12 @@ trait JsonFieldsTrait {
     }
 
     /**
-     * @param string|PropertyPathInterface $propertyPath  The property path to modify
-     * @param mixed|null                   $default       The default value if the field does not exist
-     *
-     * @return mixed
+     * @param string|PropertyPathInterface $propertyPath The property path to modify
+     * @param mixed|null                   $default      The default value if the field does not exist
      *
      * @throws NoSuchIndexException
+     *
+     * @return mixed
      */
     public function getField($propertyPath, $default = null)
     {
@@ -71,11 +70,10 @@ trait JsonFieldsTrait {
     }
 
     /**
-     * @param string|PropertyPathInterface $propertyPath  The property path to modify
-     * @param mixed|false                  $default       The default value if the field does not exist
+     * @param string|PropertyPathInterface $propertyPath The property path to modify
+     * @param mixed|false                  $default      The default value if the field does not exist
      *
      * @return bool
-     *
      */
     public function getBooleanField($propertyPath, $default = false)
     {
@@ -83,7 +81,7 @@ trait JsonFieldsTrait {
     }
 
     /**
-     * @param string|PropertyPathInterface $propertyPath  The property path to modify
+     * @param string|PropertyPathInterface $propertyPath The property path to modify
      *
      * @throws NoSuchIndexException
      */

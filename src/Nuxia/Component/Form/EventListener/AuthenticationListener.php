@@ -24,9 +24,9 @@ class AuthenticationListener
             $event->getForm()->addError(new FormError($error->getMessage()));
         }
         $event->setData(
-            array(
+            [
                 '_username' => $this->session->get(SecurityContextInterface::LAST_USERNAME),
-            )
+            ]
         );
     }
 }

@@ -40,12 +40,13 @@ class BaseSecurityManager implements SecurityManagerInterface
     public function getUser()
     {
         if (!$this->tokenStorage->getToken()) {
-            return null;
+            return;
         }
         $user = $this->tokenStorage->getToken()->getUser();
         if (!is_object($user)) {
-            return null;
+            return;
         }
+
         return $user;
     }
 

@@ -10,7 +10,8 @@ use Nuxia\Component\FileUtils\Iterator\FileIteratorInterface;
 abstract class AbstractFile implements FileInterface
 {
     /**
-     * A full path to file that is being written / reader
+     * A full path to file that is being written / reader.
+     *
      * @var string
      */
     protected $path;
@@ -27,7 +28,7 @@ abstract class AbstractFile implements FileInterface
 
     /**
      * @var resource
-     * Stream of current file
+     *               Stream of current file
      */
     protected $filePointer;
 
@@ -61,13 +62,14 @@ abstract class AbstractFile implements FileInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getIterator()
     {
         if (!$this->exists()) {
             throw new FileNotFoundException($this->path);
         }
+
         return $this->iterator;
     }
 
@@ -80,7 +82,7 @@ abstract class AbstractFile implements FileInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getFilename()
     {
@@ -88,7 +90,7 @@ abstract class AbstractFile implements FileInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getPath()
     {
@@ -96,23 +98,20 @@ abstract class AbstractFile implements FileInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getFilePointer()
     {
         return $this->filePointer;
     }
 
-    /**
-     * @return void
-     */
     public function __destruct()
     {
         $this->close();
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function close()
     {
@@ -122,7 +121,7 @@ abstract class AbstractFile implements FileInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function open($mode)
     {
@@ -136,7 +135,7 @@ abstract class AbstractFile implements FileInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function delete()
     {
@@ -148,7 +147,7 @@ abstract class AbstractFile implements FileInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function exists()
     {

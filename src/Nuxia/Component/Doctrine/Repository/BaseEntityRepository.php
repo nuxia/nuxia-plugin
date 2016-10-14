@@ -10,8 +10,8 @@ class BaseEntityRepository extends DoctrineEntityRepository
 {
     /**
      * @param QueryBuilder $qb
-     * @param string $alias
-     * @param array $criteria
+     * @param string       $alias
+     * @param array        $criteria
      */
     protected function parseCriteria(QueryBuilder $qb, $alias, array $criteria)
     {
@@ -29,7 +29,7 @@ class BaseEntityRepository extends DoctrineEntityRepository
     /**
      * @param string $alias
      * @param string $field
-     * @param array $array
+     * @param array  $array
      * @param string $operator
      *
      * @return string
@@ -41,13 +41,15 @@ class BaseEntityRepository extends DoctrineEntityRepository
         foreach ($array as $value) {
             $clause .= ' ' . $this->resolveArrayToClauseOperator($operator, $array) . ' ' . $this->generateWherePart($alias, $field, $value);
         }
+
         return $clause;
     }
 
     /**
      * @param string $alias
-     * @param array $criteria
+     * @param array  $criteria
      * @param string $operator
+     *
      * @return string
      */
     protected function criteriaToClause($alias, array $criteria, $operator = 'OR')
@@ -64,16 +66,18 @@ class BaseEntityRepository extends DoctrineEntityRepository
             if ($i !== $count) {
                 $clause .= ' ' . $operator . ' ';
             }
-            $i++;
+            ++$i;
         }
+
         return $clause;
     }
 
     /**
-     * @param string $alias
-     * @param string $field
+     * @param string      $alias
+     * @param string      $field
      * @param string|null $value
      * @param string|null $operator
+     *
      * @return string
      */
     protected function generateWherePart($alias, $field, $value = null, $operator = null)
@@ -82,11 +86,13 @@ class BaseEntityRepository extends DoctrineEntityRepository
                 $value
             )) . ' ';
         $clause .= $value === null ? ':' . $alias . '_' . $field : '\'' . $this->getWhereValue($value) . '\'';
+
         return $clause;
     }
 
     /**
      * @param string $value
+     *
      * @return string
      */
     protected function getWhereOperator($value)
@@ -96,6 +102,7 @@ class BaseEntityRepository extends DoctrineEntityRepository
 
     /**
      * @param string|$value
+     *
      * @return string
      */
     protected function getWhereValue($value)
@@ -130,7 +137,7 @@ class BaseEntityRepository extends DoctrineEntityRepository
                         $qb->setParameter($key . '_end', $value['end']);
                         break;
                     case '>': case '>=': case '<': case '<=': case '!=':
-                    $qb->andWhere($alias . '.' . $key . ' '. $value['operator'] . ' :' . $key);
+                    $qb->andWhere($alias . '.' . $key . ' ' . $value['operator'] . ' :' . $key);
                     $qb->setParameter($key, $value['value']);
                     break;
                 }
@@ -142,15 +149,15 @@ class BaseEntityRepository extends DoctrineEntityRepository
 
     /**
      * @param QueryBuilder $qb
-     * @param string $alias
-     * @param string $key
-     * @param array $criteria
+     * @param string       $alias
+     * @param string       $key
+     * @param array        $criteria
      */
     protected function parseSubCriteria(QueryBuilder $qb, $alias, $key, array &$criteria)
     {
         //@REWORK ArrayAccess
         //$key pourrait être un property path pour accéder à des niveaux plus profonds
-        if(isset($criteria[$key]) && is_array($criteria[$key])) {
+        if (isset($criteria[$key]) && is_array($criteria[$key])) {
             $this->parseCriteria($qb, $alias, $criteria[$key]);
             unset($criteria[$key]);
         }

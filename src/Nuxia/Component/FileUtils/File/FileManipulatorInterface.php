@@ -49,9 +49,9 @@ interface FileManipulatorInterface
     const BOTTOM_TO_TOP_READ_WRITE_OR_CREATE = 'x+';
 
     /**
-     * @return \Traversable|null|FileIteratorInterface
-     *
      * @throws \RuntimeException
+     *
+     * @return \Traversable|null|FileIteratorInterface
      */
     public function getIterator();
 
@@ -65,17 +65,14 @@ interface FileManipulatorInterface
      */
     public function getWriter();
 
-    /**
-     * @return void
-     */
     public function close();
 
     /**
      * @param string $mode
      *
-     * @return ressource
-     *
      * @throws \RuntimeException
+     *
+     * @return ressource
      */
     public function open($mode);
 
@@ -84,8 +81,5 @@ interface FileManipulatorInterface
      */
     public function exists();
 
-    /**
-     * @return void
-     */
     public function delete();
 }

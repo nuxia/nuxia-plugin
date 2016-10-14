@@ -26,6 +26,7 @@ abstract class AbstractSortableRepository extends BaseEntityRepository
         if ($this->config === null) {
             $this->config = $this->initSortableConfiguration();
         }
+
         return $this->config;
     }
 
@@ -37,7 +38,7 @@ abstract class AbstractSortableRepository extends BaseEntityRepository
      */
     protected function getExtraOrderableClause($entity, $alias)
     {
-        return null;
+        return;
     }
 
     //@TODO a renommer en getOrderableQueryBuilder
@@ -61,6 +62,7 @@ abstract class AbstractSortableRepository extends BaseEntityRepository
         if ($extraClause !== null) {
             $qb->andWhere($extraClause);
         }
+
         return $qb;
     }
 
@@ -79,6 +81,7 @@ abstract class AbstractSortableRepository extends BaseEntityRepository
         $qb->setParameter('position', $entity->$getter());
         $qb->setMaxResults(1);
         $qb->orderBy($alias . '.order', 'ASC');
+
         return $qb->getQuery()->getOneOrNullResult();
     }
 
@@ -97,6 +100,7 @@ abstract class AbstractSortableRepository extends BaseEntityRepository
         $qb->setParameter('position', $entity->$getter());
         $qb->orderBy($alias . '.order', 'DESC');
         $qb->setMaxResults(1);
+
         return $qb->getQuery()->getOneOrNullResult();
     }
 
@@ -111,6 +115,7 @@ abstract class AbstractSortableRepository extends BaseEntityRepository
         $qb = $this->getOrderableQuery($entity, $alias);
         $qb->select('MAX(' . $alias . '.' . $this->config['position'] . ')');
         $order = $qb->getQuery()->getSingleScalarResult();
+
         return intval($order) + 1;
     }
 
@@ -118,11 +123,11 @@ abstract class AbstractSortableRepository extends BaseEntityRepository
     //@REWORK voir pour factoriser avec getNewOrder ou surcharge gedmo (à noter que cette méthode n'est aujourd'hui qu'utilisable pour le create)
     /**
      * @param string $alias
-     * @param array $conditions
+     * @param array  $conditions
      *
      * @return int
      */
-    public function getOrderWhenCreate($alias, $conditions = array())
+    public function getOrderWhenCreate($alias, $conditions = [])
     {
         //@REWORK $conditions = criteria et getCriteriaFromEntity
         $this->getSortableConfiguration();
@@ -130,11 +135,12 @@ abstract class AbstractSortableRepository extends BaseEntityRepository
         $qb->select('MAX(' . $alias . '.' . $this->config['position'] . ')');
         if (!empty($conditions)) {
             foreach ($conditions as $field => $value) {
-                $qb->andWhere($alias . '.' . $field. ' = :' . $field);
+                $qb->andWhere($alias . '.' . $field . ' = :' . $field);
                 $qb->setParameter($field, $value);
             }
         }
         $order = $qb->getQuery()->getSingleScalarResult();
+
         return intval($order) + 1;
     }
 }

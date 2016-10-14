@@ -40,7 +40,7 @@ class PersistHelper extends Helper
      */
     public function decrementTotalFlushSize(ObjectManager $manager)
     {
-        $this->totalFlushSize--;
+        --$this->totalFlushSize;
         if (($this->totalFlushSize % $this->maxFlushSize) === 0 || $this->totalFlushSize === 0) {
             $manager->flush();
             $manager->clear();
@@ -68,7 +68,7 @@ class PersistHelper extends Helper
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getName()
     {

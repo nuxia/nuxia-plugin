@@ -9,13 +9,13 @@ class ReservedWords extends Constraint
     /**
      * @var array
      */
-    public $words = array(
+    public $words = [
         'user',
         'admin',
         'application',
         'dashboard',
         'null',
-    );
+    ];
 
     /**
      * @var string

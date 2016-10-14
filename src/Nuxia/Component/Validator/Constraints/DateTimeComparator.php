@@ -36,8 +36,8 @@ class DateTimeComparator extends Constraint
      */
     public function getTargets()
     {
-        return array(
-            self::CLASS_CONSTRAINT
-        );
+        return [
+            self::CLASS_CONSTRAINT,
+        ];
     }
 }

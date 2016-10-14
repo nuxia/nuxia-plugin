@@ -5,20 +5,20 @@ namespace Nuxia\Bundle\NuxiaBundle\Twig;
 /**
  * This extension adds usefull html tools on twig template :
  * - concat_attribute (@TODO rename) : @TODO to document
- * - render_html_attributes : convert array to html attributes
+ * - render_html_attributes : convert array to html attributes.
  *
  * @author Yannick Snobbert <yannick.snobbert@gmail.com>
  */
 class HtmlExtension extends \Twig_Extension
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('concat_attribute', array($this, 'concatAttribute')),
-        );
+        return [
+            new \Twig_SimpleFilter('concat_attribute', [$this, 'concatAttribute']),
+        ];
     }
 
     /**
@@ -47,7 +47,7 @@ class HtmlExtension extends \Twig_Extension
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getName()
     {

@@ -3,7 +3,7 @@
 namespace Nuxia\Component\Config;
 
 /**
- * ParameterBagInterface
+ * ParameterBagInterface.
  *
  * @author Yannick Snobbert <yannick.snobbert@gmail.com>
  */
@@ -16,9 +16,9 @@ interface ParameterBagInterface
      * @param mixed  $default The default value if the parameter key does not exist
      * @param bool   $deep    If true, a path like foo[bar] will find deeper items
      *
-     * @return mixed
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return mixed
      */
     public function get($path, $default = null, $deep = false);
 
@@ -27,7 +27,7 @@ interface ParameterBagInterface
      *
      * @param array $parameters An array of parameters
      */
-    public function add(array $parameters = array());
+    public function add(array $parameters = []);
 
     /**
      * Sets a parameter by name.
@@ -79,7 +79,7 @@ interface ParameterBagInterface
      * It just does nothing if the parameter has been set before.
      *
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      */
     public function setIfNotSet($key, $value);
 
@@ -92,13 +92,14 @@ interface ParameterBagInterface
      *
      * @return mixed
      */
-    public function addIfNotSet(array $parameters = array());
+    public function addIfNotSet(array $parameters = []);
 
     /**
      * Returns the parameters which match with the $keys parameter.
      * Not existing keys are ignored.
      *
      * @param array $keys
+     *
      * @return array
      */
     public function filterByKeys(array $keys);

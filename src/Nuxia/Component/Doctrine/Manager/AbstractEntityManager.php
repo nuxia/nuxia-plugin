@@ -38,6 +38,7 @@ abstract class AbstractEntityManager implements ManagerInterface
         if ($entity === null) {
             return $this->em->getRepository($this->getEntityName());
         }
+
         return $this->em->getRepository($entity);
     }
 }

@@ -65,7 +65,7 @@ abstract class AbstractFormHandler
      * @param null  $data
      * @param array $options
      */
-    protected function initForm($data = null, array $options = array())
+    protected function initForm($data = null, array $options = [])
     {
         $this->form = $this->formFactory->createForm($data, $options);
     }
@@ -101,6 +101,7 @@ abstract class AbstractFormHandler
         $form = $method === 'GET' && $this->form === null ? $this->formFilter : $this->form;
 
         $form->handleRequest($this->request);
+
         return $form->isValid();
     }
 

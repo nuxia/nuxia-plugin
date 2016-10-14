@@ -9,7 +9,7 @@ class Status extends Constraint
     /**
      * @var array
      */
-    public $required_fields = array();
+    public $required_fields = [];
 
     /**
      * @var string
@@ -26,7 +26,7 @@ class Status extends Constraint
      */
     public function getRequiredOptions()
     {
-        return array('required_fields');
+        return ['required_fields'];
     }
 
     /**

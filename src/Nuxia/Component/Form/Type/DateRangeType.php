@@ -17,45 +17,45 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class DateRangeType extends AbstractType
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'csrf_protection' => false,
             'required' => true,
             'format' => 'dd/MM/yyyy',
             'error_bubbling' => false,
-        ));
+        ]);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addEventListener(FormEvents::SUBMIT, array($this, 'process'));
-        $contraints = $options['required'] ? array(new NotBlank(array('message' => 'field.required'))) : array();
-        $builder->add('start', DateType::class, array(
+        $builder->addEventListener(FormEvents::SUBMIT, [$this, 'process']);
+        $contraints = $options['required'] ? [new NotBlank(['message' => 'field.required'])] : [];
+        $builder->add('start', DateType::class, [
             'format' => $options['format'],
             'widget' => 'single_text',
             'invalid_message' => 'field.date.invalid',
-            'invalid_message_parameters' => array('%format%' => $options['format']),
+            'invalid_message_parameters' => ['%format%' => $options['format']],
             'input' => 'string',
             'constraints' => $contraints,
-        ));
-        $builder->add('end', DateType::class, array(
+        ]);
+        $builder->add('end', DateType::class, [
             'format' => $options['format'],
             'widget' => 'single_text',
             'invalid_message' => 'field.date.invalid',
-            'invalid_message_parameters' =>  array('%format%' => $options['format']),
+            'invalid_message_parameters' => ['%format%' => $options['format']],
             'input' => 'string',
             'constraints' => $contraints,
-        ));
+        ]);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
@@ -82,7 +82,7 @@ class DateRangeType extends AbstractType
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getParent()
     {

@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -18,7 +17,7 @@ use Symfony\Component\Templating\EngineInterface;
 
 /**
  * Base class for every service controller
- * Most of shortcuts methods are similar to the base FrameworkBundle Controller
+ * Most of shortcuts methods are similar to the base FrameworkBundle Controller.
  *
  * @author Yannick Snobbert <yannick.snobbert@gmail.com>
  */
@@ -92,11 +91,11 @@ abstract class AbstractController
     /**
      * @param array|ControllerBagInterface $controllerBag
      *
-     * @return ControllerBagInterface
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return ControllerBagInterface
      */
-    protected function initControllerBag($controllerBag = array())
+    protected function initControllerBag($controllerBag = [])
     {
         if (is_array($controllerBag)) {
             $controllerBag = new ControllerBag($controllerBag, false);
@@ -104,11 +103,12 @@ abstract class AbstractController
         if (!$controllerBag instanceof ControllerBagInterface) {
             throw new \InvalidArgumentException('$controllerBag must be an instance of ControllerBagInterface');
         }
+
         return $controllerBag;
     }
 
     /**
-     * Gets the previous url
+     * Gets the previous url.
      *
      * The default route and default parameters avoid :
      * - 404 if the referrer is null
@@ -120,17 +120,18 @@ abstract class AbstractController
      *
      * @return array|string
      */
-    protected function getReferer(Request $request, $defaultRoute, array $defaultParameters = array())
+    protected function getReferer(Request $request, $defaultRoute, array $defaultParameters = [])
     {
         $referer = $request->headers->get('referer');
         if ($referer !== null && $referer !== $request->getUri()) {
             return $referer;
         }
+
         return $this->generateUrl($defaultRoute, $defaultParameters);
     }
 
     /**
-     * Redirects to the previous url
+     * Redirects to the previous url.
      *
      * @param Request $request
      * @param string  $defaultRoute
@@ -139,7 +140,7 @@ abstract class AbstractController
      *
      * @return RedirectResponse
      */
-    protected function redirectToReferer(Request $request, $defaultRoute, array $defaultParameters = array(), $status = 302)
+    protected function redirectToReferer(Request $request, $defaultRoute, array $defaultParameters = [], $status = 302)
     {
         return $this->redirect($this->getReferer($request, $defaultRoute, $defaultParameters));
     }
@@ -154,9 +155,10 @@ abstract class AbstractController
      *
      * @return Response A Response instance
      */
-    public function forward(Request $request, $controller, array $path = array(), array $query = array())
+    public function forward(Request $request, $controller, array $path = [], array $query = [])
     {
         $path['_controller'] = $controller;
+
         return $this->httpKernel->handle($request->duplicate($query, null, $path), HttpKernelInterface::SUB_REQUEST);
     }
 
@@ -182,7 +184,7 @@ abstract class AbstractController
      *
      * @return RedirectResponse
      */
-    protected function redirectToRoute($route, array $parameters = array(), $status = 302)
+    protected function redirectToRoute($route, array $parameters = [], $status = 302)
     {
         return $this->redirect($this->generateUrl($route, $parameters), $status);
     }
@@ -213,7 +215,7 @@ abstract class AbstractController
      *
      * @return Response A Response instance
      */
-    protected function render($view, array $parameters = array(), Response $response = null)
+    protected function render($view, array $parameters = [], Response $response = null)
     {
         return $this->templating->renderResponse($view, $parameters, $response);
     }
@@ -257,13 +259,13 @@ abstract class AbstractController
      *
      * @param string $route         The name of the route
      * @param mixed  $parameters    An array of parameters
-     * @param int     $referenceType The type of reference to be generated (one of the constants)
+     * @param int    $referenceType The type of reference to be generated (one of the constants)
      *
      * @return string The generated URL
      *
      * @see UrlGeneratorInterface
      */
-    protected function generateUrl($route, $parameters = array(), $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH)
+    protected function generateUrl($route, $parameters = [], $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH)
     {
         return $this->router->generate($route, $parameters, $referenceType);
     }

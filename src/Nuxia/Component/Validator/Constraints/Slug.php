@@ -16,6 +16,6 @@ class Slug extends Constraint
      */
     public function getDefaultOption()
     {
-        return array('message');
+        return ['message'];
     }
 }

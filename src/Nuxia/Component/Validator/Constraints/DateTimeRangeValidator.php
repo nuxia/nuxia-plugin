@@ -24,7 +24,7 @@ class DateTimeRangeValidator extends ConstraintValidator
                 }
                 if (!($value > $constraint->after)) {
                     $this->context->buildViolation(
-                        $constraint->afterMessage, array('%after%' => $constraint->after->format($constraint->format)))
+                        $constraint->afterMessage, ['%after%' => $constraint->after->format($constraint->format)])
                     ->addViolation();
                 }
             }
@@ -38,9 +38,9 @@ class DateTimeRangeValidator extends ConstraintValidator
                 if (!($value < $constraint->before)) {
                     $this->context->addViolation(
                         $constraint->beforeMessage,
-                        array(
-                            '%before%' => $constraint->before->format($constraint->format)
-                        )
+                        [
+                            '%before%' => $constraint->before->format($constraint->format),
+                        ]
                     );
                 }
             }
@@ -57,6 +57,7 @@ class DateTimeRangeValidator extends ConstraintValidator
         if (!$value instanceof \Datetime) {
             $value = new \Datetime($value);
         }
+
         return $value;
     }
 }

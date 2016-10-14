@@ -1,4 +1,5 @@
 <?php
+
 namespace Nuxia\Component\FileUtils\File;
 
 use Nuxia\Component\FileUtils\File\Reader\CsvReader;
@@ -9,7 +10,7 @@ class CsvFile extends AbstractFile
     /**
      * @var string
      */
-    protected $fieldDelimiter = ";";
+    protected $fieldDelimiter = ';';
 
     /**
      * @var string
@@ -70,24 +71,26 @@ class CsvFile extends AbstractFile
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getWriter()
     {
         if ($this->writer === null) {
             $this->writer = new CsvWriter($this);
         }
+
         return $this->writer;
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getReader()
     {
         if ($this->reader === null) {
             $this->reader = new CsvReader($this);
         }
+
         return $this->reader;
     }
 }

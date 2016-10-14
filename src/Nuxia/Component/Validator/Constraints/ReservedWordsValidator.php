@@ -31,7 +31,7 @@ class ReservedWordsValidator extends ConstraintValidator
     {
         $reserved_words = array_merge($constraint->words, $this->additionnal_words);
         if (in_array(Urlizer::urlize($value), $reserved_words)) {
-            $this->context->addViolation($constraint->message, array('%word%' => $value));
+            $this->context->addViolation($constraint->message, ['%word%' => $value]);
         }
     }
 }

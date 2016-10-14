@@ -7,9 +7,9 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 /**
- * Ce validateur utilise la méthode urlize du bundle GedmoDoctrineExtension il doit donc être chargé
- * @author yannicksnobbert
+ * Ce validateur utilise la méthode urlize du bundle GedmoDoctrineExtension il doit donc être chargé.
  *
+ * @author yannicksnobbert
  */
 class SlugValidator extends ConstraintValidator
 {

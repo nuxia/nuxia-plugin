@@ -6,7 +6,7 @@ use Nuxia\Component\Security\SecurityManagerInterface;
 use Symfony\Bridge\Twig\Extension\SecurityExtension as SymfonySecurityExtension;
 
 /**
- * This extension gives you access to the security manager (nuxia.security.manager) from twig templates
+ * This extension gives you access to the security manager (nuxia.security.manager) from twig templates.
  *
  * @author Yannick Snobbert <yannick.snobbert@gmail.com>
  */
@@ -26,10 +26,10 @@ class SecurityExtension extends SymfonySecurityExtension implements \Twig_Extens
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getGlobals()
     {
-        return array('security' => $this->securityManager);
+        return ['security' => $this->securityManager];
     }
 }

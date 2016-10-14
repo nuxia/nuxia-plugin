@@ -5,21 +5,21 @@ namespace Nuxia\Bundle\NuxiaBundle\Twig;
 use Symfony\Component\DependencyInjection\Container;
 
 /**
- * This extension allows you to camelize (ExampleString) and to underscore (example_string) strings from twig templates
+ * This extension allows you to camelize (ExampleString) and to underscore (example_string) strings from twig templates.
  *
  * @author Yannick Snobbert <yannick.snobbert@gmail.com>
  */
 class CaseExtension extends \Twig_Extension
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('camelize', array($this, 'camelize')),
-            new \Twig_SimpleFilter('underscore', array($this, 'underscore')),
-        );
+        return [
+            new \Twig_SimpleFilter('camelize', [$this, 'camelize']),
+            new \Twig_SimpleFilter('underscore', [$this, 'underscore']),
+        ];
     }
 
     /**
@@ -43,7 +43,7 @@ class CaseExtension extends \Twig_Extension
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getName()
     {

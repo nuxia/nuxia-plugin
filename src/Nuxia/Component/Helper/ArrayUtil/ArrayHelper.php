@@ -6,12 +6,11 @@ class ArrayHelper
 {
     private function __construct()
     {
-
     }
 
     public static function isAssociativeArray(array $array)
     {
-        return (is_array($array) && count(array_filter(array_keys($array), 'is_string')) == count($array));
+        return is_array($array) && count(array_filter(array_keys($array), 'is_string')) == count($array);
     }
 
     public static function filterArrayByKeys(array $array, array $keys)

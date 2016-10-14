@@ -14,23 +14,23 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class FormType extends AbstractType
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array('translation_domain' => 'form'));
+        $resolver->setDefaults(['translation_domain' => 'form']);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, array($this, 'addFields'));
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, [$this, 'addFields']);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function addFields(FormEvent $event)
     {
@@ -41,7 +41,7 @@ class FormType extends AbstractType
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {

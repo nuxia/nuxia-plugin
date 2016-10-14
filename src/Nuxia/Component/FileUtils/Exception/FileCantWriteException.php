@@ -11,4 +11,4 @@ class FileCantWriteException extends FileException
     {
         parent::__construct(sprintf('Unable to write data in file %s', $path));
     }
-} 
+}

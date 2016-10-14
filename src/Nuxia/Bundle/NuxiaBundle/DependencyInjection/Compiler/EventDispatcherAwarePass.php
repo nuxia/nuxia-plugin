@@ -19,7 +19,7 @@ class EventDispatcherAwarePass implements CompilerPassInterface
     const EVENT_DISPATCHER_AWARE_INTERFACE = 'Nuxia\Component\EventDispatcherAwareInterface';
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function process(ContainerBuilder $container)
     {
@@ -32,7 +32,7 @@ class EventDispatcherAwarePass implements CompilerPassInterface
                     sprintf('Service "%s" must implement interface "%s".', $id, static::EVENT_DISPATCHER_AWARE_INTERFACE)
                 );
             }
-            $definition->addMethodCall('setEventDispatcher', array($eventDispatcher));
+            $definition->addMethodCall('setEventDispatcher', [$eventDispatcher]);
             $container->setDefinition($id, $definition);
         }
     }

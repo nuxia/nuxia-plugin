@@ -41,7 +41,7 @@ abstract class AbstractDoctrineCommand extends AbstractCommand
 
     public function decrementTotalFlushSize()
     {
-        $this->totalFlushSize--;
+        --$this->totalFlushSize;
     }
 
     //@REWORK passer en PersistHelper?

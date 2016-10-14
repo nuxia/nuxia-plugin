@@ -8,18 +8,18 @@ class ArrayManipulator
 {
     private function __construct()
     {
-
     }
 
     public static function prefixArray(array $input, $prefix)
     {
-        $output = array();
+        $output = [];
         $isAssociativeArray = ArrayHelper::isAssociativeArray($input);
         $buffer = $isAssociativeArray ? array_values($input) : $input;
         foreach ($buffer as $value) {
             $output = $prefix . $value;
         }
         $output = $isAssociativeArray ? array_combine(array_keys($input), $output) : $output;
+
         return $output;
     }
 
@@ -28,7 +28,7 @@ class ArrayManipulator
         switch ($type) {
             case 'all':
                 $callback = function ($v) {
-                    return !($v === null || $v === '' || $v === array());
+                    return !($v === null || $v === '' || $v === []);
                 };
                 break;
             default:
@@ -41,6 +41,7 @@ class ArrayManipulator
                 $value = self::cleanArray($value);
             }
         }
+
         return array_filter($array, $callback);
     }
 
@@ -49,20 +50,22 @@ class ArrayManipulator
     {
         $resolvedPropertyPath = self::resolvePropertyPath($propertyPath, '.');
         if ($array === null) {
-            $array = array();
+            $array = [];
         }
+
         return PropertyAccess::createPropertyAccessor()->setValue($array, $resolvedPropertyPath, $value);
     }
 
-     public static function getValue($array, $propertyPath, $throwExceptionOnInvalidIndex = false)
-     {
-         $accessor = PropertyAccess::createPropertyAccessor(false, $throwExceptionOnInvalidIndex);
-         $resolvedPropertyPath = self::resolvePropertyPath($propertyPath, '.');
-         if ($array === null) {
-             $array = array();
-         }
-         return PropertyAccess::createPropertyAccessor()->getValue($array, $resolvedPropertyPath);
-     }
+    public static function getValue($array, $propertyPath, $throwExceptionOnInvalidIndex = false)
+    {
+        $accessor = PropertyAccess::createPropertyAccessor(false, $throwExceptionOnInvalidIndex);
+        $resolvedPropertyPath = self::resolvePropertyPath($propertyPath, '.');
+        if ($array === null) {
+            $array = [];
+        }
+
+        return PropertyAccess::createPropertyAccessor()->getValue($array, $resolvedPropertyPath);
+    }
 
      //@REWORK Utilisation d'un système pour formatter les paths. Ce système est utilisé dans le router et dans admin
     private static function resolvePropertyPath($propertyPath, $separator = '.')
@@ -71,6 +74,7 @@ class ArrayManipulator
         foreach (explode('.', $propertyPath) as $subPath) {
             $resolvedPropertyPath .= '[' . $propertyPath . ']';
         }
+
         return $resolvedPropertyPath;
     }
 }

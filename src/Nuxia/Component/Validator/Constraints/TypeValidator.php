@@ -16,9 +16,9 @@ class TypeValidator extends SymfonyTypeValidator
             return;
         }
         if ($constraint->type === 'integer' || $constraint->type === 'int') {
-           if (ValidatorUtil::isInteger($value)) {
-               return;
-           }
+            if (ValidatorUtil::isInteger($value)) {
+                return;
+            }
         }
 
         return parent::validate($value, $constraint);

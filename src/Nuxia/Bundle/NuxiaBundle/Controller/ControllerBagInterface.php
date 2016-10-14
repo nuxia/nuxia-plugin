@@ -6,7 +6,7 @@ use Nuxia\Component\Config\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * ControllerBagInterface
+ * ControllerBagInterface.
  *
  * @author Yannick Snobbert <yannick.snobbert@gmail.com>
  */
@@ -14,7 +14,7 @@ interface ControllerBagInterface extends ParameterBagInterface
 {
     /**
      * Return the parameters after applied callbacks required for templates :
-     * - Convert \Symfony\Form\Form to \Symfony\Form\FormView
+     * - Convert \Symfony\Form\Form to \Symfony\Form\FormView.
      *
      * @return array
      */

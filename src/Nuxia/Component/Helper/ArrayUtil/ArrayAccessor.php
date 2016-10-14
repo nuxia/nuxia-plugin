@@ -10,12 +10,14 @@ class ArrayAccessor extends PropertyAccessor
     public function setValue(&$objectOrArray, $propertyPath, $value)
     {
         $propertyPath = $this->buildArrayPropertPath($propertyPath);
+
         return parent::setValue($objectOrArray, $propertyPath, $value);
     }
 
     public function getValue($objectOrArray, $propertyPath)
     {
         $propertyPath = $this->buildArrayPropertPath($propertyPath);
+
         return parent::getValue($objectOrArray, $propertyPath);
     }
 
@@ -26,6 +28,7 @@ class ArrayAccessor extends PropertyAccessor
         } catch (NoSuchPropertyException $e) {
             return false;
         }
+
         return true;
     }
 
@@ -35,6 +38,7 @@ class ArrayAccessor extends PropertyAccessor
         foreach (explode($separator, $path) as $subPath) {
             $propertyPath = '[' . $subPath . ']';
         }
+
         return $propertyPath;
     }
 
@@ -46,7 +50,7 @@ class ArrayAccessor extends PropertyAccessor
         foreach (explode($separator, $path) as $subPath) {
             $propertyPath .= '[' . $subPath . ']';
         }
+
         return $propertyPath;
     }
-
 }

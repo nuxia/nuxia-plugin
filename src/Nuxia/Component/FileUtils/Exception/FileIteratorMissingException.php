@@ -11,4 +11,4 @@ class FileIteratorMissingException extends FileException
     {
         parent::__construct(sprintf('File iterator missing for %s', get_class($class)));
     }
-} 
+}

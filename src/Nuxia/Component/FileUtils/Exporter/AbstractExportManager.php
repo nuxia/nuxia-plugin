@@ -12,9 +12,9 @@ abstract class AbstractExportManager implements ExportManagerInterface
      * @param mixed         $data
      * @param bool          $unaccent
      *
-     * @return StreamedFileResponse
-     *
      * @throws \RuntimeException
+     *
+     * @return StreamedFileResponse
      */
     protected function createResponse(FileInterface $file, $data, $unAccent = true)
     {
@@ -27,7 +27,6 @@ abstract class AbstractExportManager implements ExportManagerInterface
             foreach ($data as $rowIndex => $row) {
                 foreach ($row as $dataIndex => $dataValue) {
                     $data[$rowIndex][$dataIndex] = Urlizer::unaccent($dataValue);
-
                 }
             }
         }
