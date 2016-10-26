@@ -5,3 +5,4 @@ services:
         calls:
             - [ "setRequestStack", [ "@request_stack" ] ]
             - [ "setRouter", [ "@router" ] ]
+            - [ "setSymfonyFormFactory", [ "@form.factory" ] ]

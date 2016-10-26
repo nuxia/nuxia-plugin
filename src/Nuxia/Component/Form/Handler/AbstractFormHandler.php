@@ -12,9 +12,20 @@ use Symfony\Component\Routing\RouterInterface;
 abstract class AbstractFormHandler
 {
     /**
+     * @deprecated will be removed use symfony/formFactory instead
+     * @var FormFactory
+     */
+    protected $legacyFormFactory;
+
+    /**
      * @var FormFactoryInterface
      */
     protected $formFactory;
+
+    /**
+     * @var string
+     */
+    protected $formType;
 
     /**
      * @var RequestStack
@@ -54,12 +65,29 @@ abstract class AbstractFormHandler
     }
 
     /**
-     * @param FormFactory $formFactory
+     * @param FormFactoryInterface|FormFactory $formFactory
      */
-    public function setFormFactory(FormFactory $formFactory)
+    public function setFormFactory($formFactory)
+    {
+        $this->legacyFormFactory = $formFactory;
+    }
+
+    /**
+     * @param FormFactoryInterface|FormFactory $formFactory
+     */
+    public function setSymfonyFormFactory($formFactory)
     {
         $this->formFactory = $formFactory;
     }
+
+    /**
+     * @param string $formType
+     */
+    public function setFormType($formType)
+    {
+        $this->formType = $formType;
+    }
+
 
     /**
      * @param mixed|null $data
@@ -67,7 +95,11 @@ abstract class AbstractFormHandler
      */
     protected function initForm($data = null, array $options = [])
     {
-        $this->form = $this->formFactory->createForm($data, $options);
+        if (null !== $this->formType) {
+            $this->form = $this->formFactory->create($this->formType, $data, $options);
+        } else {
+            $this->form = $this->legacyFormFactory->createForm($data, $options);
+        }
     }
 
     /**

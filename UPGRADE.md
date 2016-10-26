@@ -2,6 +2,32 @@
 
 - The deep parameter doesn't exist anymore in method ParameterBag::get. You should store the result in an array instead
 - FormHandler::handlePostRequest and FormHandler::handleGetRequest methods has been deleted. Use handleRequest instead 
+- The possibility to set a NuxiaFormFactory on form handlers is deprecated and will be removed. You have to setting your form type instead :
+
+ Before:
+``` yml
+   custom.form.handler:
+       parent: "nuxia.form.handler.abstract"
+       class: FormHandlerClass
+       calls:
+           - [ "setFormFactory", [ "@your.nuxia.factory" ] ]
+           
+   custom.form.factory:
+       class: Nuxia\Component\Form\Factory\FormFactory
+       public: false
+       arguments:
+           - "@form.factory"
+           - "YourCustomType"
+```
+
+ After:
+``` yml
+   custom.form.handler:
+      parent: "nuxia.form.handler.abstract"
+      class: FormHandlerClass
+      calls:
+          - [ "setFormType", [ "YourCustomType" ] ]
+```
 
 # UPGRADE 2.8
 

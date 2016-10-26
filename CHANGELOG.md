@@ -6,6 +6,7 @@ CHANGELOG
 - Fixed Symfony 3.1 and 4.0 deprecations
 - FormHandler:handleRequest has been simplified (see UPGRADE.md)
 - FormHandler:isFormValid method helper has been added
+- Setting a NuxiaFormFactory is no more needed on form handlers (see UPGRADE.md)
 
 ### 2.8
 
