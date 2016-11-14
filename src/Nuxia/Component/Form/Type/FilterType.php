@@ -15,6 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @TODO faire etendre de nuxia_form
+ * @TODO améliorer processData pour le rendre possible par champ
  */
 class FilterType extends AbstractType
 {
@@ -91,8 +92,8 @@ class FilterType extends AbstractType
             if (!$form->has($child)) {
                 continue;
             }
-
-            if ($form->get($child)->getConfig()->getType()->getName() === 'text') {
+            
+            if ($form->get($child)->getConfig()->getType()->getBlockPrefix() === 'text') {
                 $data[$child] = '%' . $data[$child] . '%';
             }
         }
